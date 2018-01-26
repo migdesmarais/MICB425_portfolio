@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"MICB425 Portfolio\"\nauthor: \"Miguel Desmarais (21421145)\"\ndate: '2018-01-25'\noutput: html_document\n---\n\n",
+    "created" : 1516943219993.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2166672970",
+    "id" : "2F191030",
+    "lastKnownWriteTime" : 1516943437,
+    "last_content_update" : 1516943437879,
+    "path" : "~/Documents/MICB425_portfolio/New Project/21421145_MICB425_portfolio.Rmd",
+    "project_path" : "21421145_MICB425_portfolio.Rmd",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
