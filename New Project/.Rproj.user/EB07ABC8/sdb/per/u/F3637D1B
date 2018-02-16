@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\nsource(\"https://bioconductor.org/biocLite.R\")\nbiocLite(\"phyloseq\")\nlibrary(phyloseq)\n\nmetadata <- read.table(file=\"Saanich.metadata.txt\", header=TRUE, row.names=1, sep=\"\\t\", na.strings=\"NAN\")\nOTU <- read.table(file=\"Saanich.OTU.txt\", header=TRUE, row.names=1, sep=\"\\t\", na.strings=\"NAN\")\n\nload(\"phyloseq_object.RData\")\n\nggplot(metadata, aes(x=NO3_uM, y=Depth_m)) + \n  geom_point(shape=17, size=2, colour=\"purple\") +\n  scale_y_reverse()\n\nmetadata %>% \n  mutate(Temperature_F = (Temperature_C)*(9/5)+32) %>% \n  ggplot() + geom_point(aes(x=Temperature_F, y=Depth_m)) +\n  scale_y_reverse()\n\nphyseq_percent = transform_sample_counts(physeq, function(x) 100 * x/sum(x))\nplot_bar(physeq_percent, fill=\"Order\") + \n  geom_bar(aes(fill=Order), stat=\"identity\") +\n  xlab(\"Sample depth\") +\n  ylab(\"% relative abundance\") +\n  ggtitle(\"Order from 10-200 m in Saanich Inlet\", subtitle = NULL)\n  \n",
+    "created" : 1518664211745.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2807122087",
+    "id" : "F3637D1B",
+    "lastKnownWriteTime" : 4294967296,
+    "last_content_update" : 1518667593395,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

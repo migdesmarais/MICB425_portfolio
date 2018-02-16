@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#Comments\ninstall.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n#Load data\nread.table(file=\"Saanich.metadata.txt\")\n\nmetadata <- read.table(file=\"Saanich.metadata.txt\", header=TRUE, row.names=1, sep=\"\\t\", na.strings=\"NAN\")\nOTU <- read.table(file=\"Saanich.OTU.txt\", header=TRUE, row.names=1, sep=\"\\t\", na.strings=\"NAN\")\n\n#DAY2\nlibrary(tidyverse)\ndata %>% function\nfunction(data)\n\noxygen = metadata %>% select(O2_uM)\n\nmetadata %>% select(matches(\"O2|oxygen\"))\n\nmetadata %>% select(matches(\"CH4|methane\"))\nmetadata %>% select(matches(\"temp\"))\nmetadata %>% select(matches(\"depth\"))\n#CH$_nM\nmetadata %>% filter(CH4_nM > 100 & Temperature_C < 10) %>% select(Depth_m,CH4_nM,Temperature_C)\n\n\n\n\n\nmetadata %>% filter(O2_uM == 0)\n\nmetadata %>% \n  filter(O2_uM == 0) %>% \n  select(Depth_m)\n\nmetadata[metadata$O2_uM == 0, \"Depth_m\"]\n\nmetadata %>% \n  mutate(N2O_uM = N2O_nM/1000)\n\nmetadata %>% \n  transmute(N2O_uM = N2O_nM/1000)\n\nmetadata %>% \n  mutate(N2O_uM = N2O_nM/1000) %>% \n  ggplot() + geom_point(aes(x=Depth_m, y=N2O_uM))\n\n",
+    "created" : 1516986630810.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1298029747",
+    "id" : "649DD2C8",
+    "lastKnownWriteTime" : 7813590799089598467,
+    "last_content_update" : 1518664187822,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
