@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1518912980677.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2788189060",
+    "id" : "25068F59",
+    "lastKnownWriteTime" : 1518913639,
+    "last_content_update" : 1518913639595,
+    "path" : "~/Documents/MICB425_portfolio/New Project/MICB425 Portfolio.Rmd",
+    "project_path" : "MICB425 Portfolio.Rmd",
+    "properties" : {
+        "chunk_output_type" : "console",
+        "cursorPosition" : "133,0",
+        "scrollLine" : "127",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
