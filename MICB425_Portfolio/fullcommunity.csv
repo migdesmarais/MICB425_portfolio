@@ -1,0 +1,52 @@
+﻿number,name,characteristics,occurences
+1,orangebear,orange gummy bear,14
+2,pinkbear,pink gummy bear,16
+3,yellowbear,yellow gummy bear,16
+4,whitebear,white gummy bear,16
+5,redbear,red gummy bear,10
+6,green bear,green gummy bear,18
+7,pinksolidbear,solid pink gummy bears,1
+8,redsolidbear,solid red gummy bears,1
+9,jellybeanyellow,yellow jelly bean,26
+10,jellybeanorange,orange jelly bean,31
+11,jellybeanpink,pink jelly bean,37
+12,jellybeangreen,green jelly bean,33
+13,jellybeanred,red jellybean,38
+14,jellyrodsyellow,long yellow jelly rods,3
+15,jellyrodsorange,long orange jelly rods,1
+16,jellyrodsred,long red jelly rods,2
+17,jellyrodsblack,long black jelly rods,1
+18,redswirl,red swirl,1
+19,blueswirl,blue swirl,2
+20,ovalyellow,yellow oval,1
+21,redfilamentous,"red, long string-like",5
+22,orangespider,orange spider-shaped,2
+23,pinkspider,pink spider-shape,3
+24,purplespider,purple spider-shape,1
+25,coke-bottlered,red coke bottle,1
+26,cokebottlepink,pink coke bottle,1
+27,cokebottleyellow,yellow coke bottle,1
+28,kissessilver,silver kisses,15
+29,bigbluebrick,large blue brick,1
+30,bigyellowbrick,large yellow brick,1
+31,bigpinkbrick,large pink brick,1
+32,smallbluebrick,small blue brick,3
+33,small yellow brick,small yellow brick,3
+34,smallgreenbrick,small green brick,2
+35,smallpinkbrick,small pink brick,6
+36,biggreen,large round green jelly,5
+37,bigpurple,large round purple jelly,3
+38,bigred,large round red jelly,7
+39,bigorange,large round orange jelly,5
+40,bigyellow,large round yellow jelly,3
+41,m&morange,orange m&m,59
+42,m&mgreen,green m&m,30
+43,m&mred,red m&m,27
+44,m&myellow,yellow m&m,34
+45,m&mbrown,brown m&m,30
+46,m&mblue,blue m&m,60
+47,skittlesyellow,yellow skittle,34
+48,skittlesorange,orange skittle,39
+49,skittlered,red skittle,30
+50,skittlebrown,brown skittle,30
+51,skittlegreen,green skittle,42

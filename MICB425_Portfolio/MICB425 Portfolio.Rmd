@@ -2,12 +2,9 @@
 title: "MICB425 Portfolio - Microbial Ecological Genomics: From Genomes to Biomes, Spring 2018"
 author: "Miguel, Desmarais, 21421145"
 date: "version `r format(Sys.time(), '%B %d, %Y')`"
-runtime: shiny
 output:
   html_document: 
     toc: yes
-editor_options: 
-  chunk_output_type: console
 ---
 ```{r, eval=FALSE, echo=FALSE}
 install.packages("plotly")
@@ -18,15 +15,6 @@ install.packages("shiny")
 
 ## Portfolio check
 
-* Installation check
-    + Completion status:
-    + Comments:
-* Portfolio repo setup
-    + Completion status: 
-    + Comments:
-* RMarkdown Pretty PDF Challenge
-    + Completion status:
-    + Comments:
 * Evidence worksheet_01
     + Completion status:
     + Comments:
@@ -48,6 +36,21 @@ install.packages("shiny")
 * Additional Readings
     + Completion status:
     + Comments  
+
+### Data Science
+
+* Installation check
+    + Completion status: X
+    + Comments:
+* Portfolio repo setup
+    + Completion status: X
+    + Comments:
+* RMarkdown Pretty PDF Challenge
+    + Completion status: X
+    + Comments:
+* ggplot
+    + Completion status: 5.5/10
+    + Comments: 
     
 ## Data science Friday
 
@@ -109,27 +112,71 @@ Push repo up to GitHub:
 
 ### RMarkdown pretty html challenge
 
+```{r child = "DS_assignment3.Rmd"}
+
+```
+
+### ggplot tutorial assignment
+
+```{r child = "ggplotassignment.Rmd"}
+
+```
+
 ## Origins and Earth Systems
 
 ### Evidence worksheet 01 "Prokaryotes: The Unseen Majority"
 
+[Withman *et al* 1998](https://www.ncbi.nlm.nih.gov/pubmed/9618454)
+
 #### Learning objectives:
 
-* Describe the numerical abundance of microbial life in relation to the ecology and biogeochemistry of Earth systems.
+* **Describe the numerical abundance of microbial life in relation to the ecology and biogeochemistry of Earth systems.**
 
 #### General questions:
 
-* What were the main questions being asked?
+* **What were the main questions being asked?**
 
-* What were the primary methodological approaches used?
+What is an estimate of the number and total carbon content of prokaryotes on Earth?
 
-* Summarize the main results or findings.
+What are the main prokaryotic habitats on Earth?
 
-* Do new questions arise from the results?
+Are the numbers of prokaryotics in different habitats consistent with their turnover times?
 
-* Were there any specific challenges or advantages in understanding the paper (e.g. did the authors provide sufficient background information to understand experimental logic, were methods explained adequately, were any specific assumptions made, were conclusions justified based on the evidence, were the figures or tables useful and easy to understand)?
+What is the total C, N and P content of prokaryotes on Earth?
+
+What is the cellular production rate of prokaryotes on Earth and how is it related to genetic diversity?
+
+* **What were the primary methodological approaches used?**
+
+The primary methodological approach in this paper is to review and evaluate previous literature on the topics of prokaryotic abundance, turnover time and cellular production rate in different habitats and to extract representative numbers. These numbers were averaged, compared and used to calculate hypothetical prokaryotic abundance, turnover time and cellular production rates representative of each habitat. The uncertainty of results from certain habitats was also assessed by investigating different research results.   
+
+* **Summarize the main results or findings.**
+
+The estimate of prokaryotic abundance on Earth is 4-6 x 10^30^ cells: 1.2 x 10^29^ cells in the open ocean, 2.6 x 10^29^ in soil, 3.5 x 10^30^ in oceanic subsurfaces and 0.25-2.5 x 10^30^ in terrestrial subsurfaces. The estimates were found to be consistent with previously calculated turnover times for each habitat. 
+
+The total amount of carbon content of prokaryotes on Earth is estimated to be 60-100% (350-550 Pg) of the carbon contant of land plants. In addition, the prokaryotic nitrogen (85–130 Pg) and phosphorus (9–14 Pg) content is 10-fold the amount found in land plants. 
+
+Based on their estimated population size (4-6 x 10^30^ cells) and cellular production rate (1.7 x 10^30^ cells/yr), the authors argue that prokaryotes have a high capacity for genetic diversity, and that this diversity may be underestimated.
+
+The open ocean has the highest cellular productivity and therefore this population is more likely to undergo mutations and rare genetic events.
+
+* **Do new questions arise from the results?**
+
+Given their high diversity and mutation rates, should we change the way we defines prokaryotic species?
+
+Do experiments in laboratory settings properly reflect events in aquatic or soil environments?
+
+Given their high abundace, do subsurface prokaryotes play a major role in biogeochemical cycles on Earth?
+
+Does the open ocean have a unique role in the planet given its important potential for prokaryotic diversity?
+
+* **Were there any specific challenges or advantages in understanding the paper (e.g. did the authors provide sufficient background information to understand experimental logic, were methods explained adequately, were any specific assumptions made, were conclusions justified based on the evidence, were the figures or tables useful and easy to understand)?**
+
+The methods were not explained adequately. Most of the methods were based on calculations (and numbers taken from literature), which were not always clearly outlined in the text. Since some of these methods are not outlined, the results should be used cautiously. It seemed like a lot of assumptions were made when calculating the carbon content and nitrogen/phosphorous content, and thus these results must be taken as rough estimates only. Nevertheless, the conclusions were still justified. Even if the numbers calculated were not as precise as one would want them to be, they are probably still within an acceptable range of the correct values. They show the great abundance and production rate of prokaryotes on Earth and highlight their role within habitats. The tables were easy to understand and helped to get an idea of how important prokaryotic life is on Earth.   
 
 ### Evidence worksheet 02 “Life and the Evolution of Earth’s Atmosphere”
+
+[Nisbet and Sleep 2003](https://www.nature.com/articles/35059210)
 
 #### Learning objectives:
 
@@ -186,38 +233,443 @@ plot_ly(ddd, x = ~Million.years.ago, y = ddd$tics, type = "scatter",
   layout(title="Evolutionary Development of Earth", xaxis = ax, yaxis = ay)
 ```
 
-* **Describe the dominant physical and chemical characteristics of Earth systems at
-waypoints.**
 
-Select an epoch from the dropdown to see a summary of the predominant physical and chemical characteristics of Earth at the time.
+* **Describe the dominant physical and chemical characteristics of Earth systems at waypoints.**
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+**Hadean**: dry surface at 500 degrees C, 90 bar pressure on Earth's surface; carbon dioxide tied up in carbonate materials such as limestone.
 
-# Create a vector that holds all of the epochs that were discussed in class.
-e2<-c("Hadean","Archaen","Proterozoic","Phanerozoic")
+**Archaean**: strong greenhouse gases predominate (methane and carbon dioxide).
 
-# Create a vector that describes Earth's conditions at each of the corresponding epochs listed in the above vector.
-chr<-c("dry surface at 500 degrees C, 90 bar pressure on Earth's surface; carbon dioxide tied up in carbonate materials such as limestone", "strong greenhouse gases predominate (methane and carbon dioxide)", "oxidation of the early atmosphere - microaerobic", "increased oxygenation of the atmosphere, mass extinction events from meteorite impacts")
+**Proterozoic**: oxidation of the early atmosphere - microaerobic.
 
-# Bind the two previous vectors into a data frame so you can call associate the epochs with their characteristics.
-ab<-as.data.frame(cbind(e2,chr),stringsAsFactors = FALSE)
+**Phanerozoic**: increased oxygenation of the atmosphere, mass extinction events from meteorite impacts.
 
-# Define a selector dropbox using functions in the Shiny package. The header for the dropbox is called "Epoch:", and within the function, we refer to this input as "Epoch" (this is similar to assigning a variable in base R). The choices supplied to the dropbox are everything listed in the vector e2.
-selectInput("Epoch","Epoch:",choices=e2)
+### Evidence worksheet 03 ", The Anthropocene - A safe operating space for humanity"
 
-# Define the dynamic text that will appear as a result of what the document user chooses in the dropbox. This function utilizes the two vectors you built with epochs and their physical and chemical characteristics and their association in a dataframe.
-renderPrint({
-  ab$chr[ab$e2==input$Epoch]
-})
+[Rockström 2009](https://www.nature.com/articles/461472a)
 
-```
+#### Learning objectives:
 
-### Evidence worksheet 03
+* **Evaluate human impacts on the ecology and biogeochemistry of Earth systems.**
 
-### Problem set 01
+#### General questions:
 
-### Problem set 02
+* **What were the main questions being asked?**
+
+This paper aims to set planetary boundaries that should not be overstepped during the Anthropocene in order to prevent human activities from causing irreparable environmental damage/change. Question asked: What are these planetery boundaries? How can they be quantified? Have these planetary boundaries already been overstepped?  
+
+* **What were the primary methodological approaches used?**
+
+The authors have identified and quantified planetary boundaries with a "conservative, risk-averse approach". The planetary boundaries are values selected for control variables that are at within reasonable distance from dangerous levels/thresholds. The methods used to do so are not clearly stated but are assumed to be based on previous literature. The current status of these boundaries were found from previous studies on climate change and the Anthropocene and assessed in relation to our current situation.
+
+* **Summarize the main results or findings.**
+
+The authors identified 9 planetary boundaries:
+CLimate change, rate of biodiversity loss, nitrogen cycle, phosphorus cycle, stratospheric ozone depletion, ocean acidification, global freshwater use, change in land use, atmospheric aerosol loading and chemical pollution.
+
+Out of these 9 planetary boundaries, 3 have already been overstepped:
+Climate change, rate of biodiversity loss and nitrogen cycle.
+
+The boundaries are tightly coupled and need to be adressed as a whole.
+
+New approach for defining preconditions for human development: "...address the scale of human action in relation to the capacity of Earth to sustain it, ...work on understanding essential Earth processes including human actions and ...research into resilience and its links to complex dynamics and self-regulation of living systems.""
+
+* **Do new questions arise from the results?**
+
+What direct actions can be done to limit the damage caused by our activities?
+
+Is it too late to reset the nitrogen or phosphorus cycles or to limit damage on biodiversity?
+
+How storng is the link between these 9 planetary boundaries and is overstepping one boundary enough to push other boundaries towards their threshold?
+
+What feedbacks and other repercussions will come from our current actions?
+
+Are there other potential boundaries that we are aware of today because they are not in danger?
+
+* **Were there any specific challenges or advantages in understanding the paper (e.g. did the authors provide sufficient background information to understand experimental logic, were methods explained adequately, were any specific assumptions made, were conclusions justified based on the evidence, were the figures or tables useful and easy to understand)?**
+
+The methods and approach used in this paper were not clearly stated. A part of the article could have be dedicated to describing the process by which these planetary boundaries and threshold were identified and set. The figures and tables were useful to get a grasp on the current state of these planetary boundaries, but still no detailed methods were shown. The article is a great summary of the planet situation in terms of its environmental condition. It is quite challenging to write about this topic since a lot of assumptions need to be made as per the inter-connectivity of systems in order to set thresholds and boundaries. I believe a more quantitative or mathematically-based study would be interesting.
+
+### Problem set 01 "Prokaryotes: The Unseen Majority"
+
+[Withman *et al.* 1998](http://www.pnas.org/content/95/12/6578)
+
+#### Learning objective:
+
+* **Describe the numerical abundance of microbial life in relation to the ecology and biogeochemistry of Earth systems.**
+
+#### Specific questions:
+
+* **What are the primary prokaryotic habitats on Earth and how do they vary with respect to their capacity to support life? Provide a breakdown of total cell abundance for each primary habitat from the tables provided in the text.**
+
+**Aquatic** - prokaryotic life in aquatic environments is found in an order of magnitude greater in the upper 200 m of the continental shelf and open ocean than in the deep ocean (>200m). Fresh water values have a similar range. These number, of course, depend on the latitude of habitats and also unique environmental factors. Because of animal mixing and precipitation, the upper 10 cm of sediment in the ocean is included in aquatic habitat prokaryotic numbers. They have a short turnover time and therefore a high cellular productivity, which means that aquatic habitats have a great capacity to support life (varying with depth), especially in the photic zone.
+*Total abundance (cells): 1.18 x 10^29^*
+
+**Soil** - prokaryotes are ubiquitous to soil environments. The amount of carbon input to soil habitats is high and fuels prokaryotic growth and their role in the soil decomposition subsystem. Given their carbon content, soil habitats have a high capacity for supporting life.
+*Total abundance (cells): 2.556 x 10^29^*
+
+**Subsurface** - subsurface environments are major habitats for prokaryotes. They are seperated in marine sediments below 10 cm and terrestrial habitats below 8 m. Most of the subsurface biomass is supported by organic matter deposited from the surface. Most of the prokaryotes found in subsurface habitats are in the the upper 600 m layer. 
+*Total abundance (cells): 3.8 x 10^30^*
+
+* **What is the estimated prokaryotic cell abundance in the upper 200 m of the ocean and what fraction of this biomass is represented by marine cyanobacterium including Prochlorococcus? What is the significance of this ratio with respect to carbon cycling in the ocean and the atmospheric composition of the Earth?**
+
+*Abundance in upper 200 m of the ocean (cells): 3.6 x 10^28^*
+
+*Density (cells/mL): 5 x 10^5^*
+
+*(Cyanobacteria: 4 x 10^4^ cells/ml/5x10^5^ cells x 100 = 8%)*
+
+*Fraction represented by Cyanobactera including Prochlorococcus: 8%*
+
+Cyanobacteria such as Prochlorococcus produce their own energy from sunlight via photosynthesis, which in the process produces oxygen while fixing carbon. Despite only being 8% of the total prokaryotic cells in the upper 200 m of the ocean, they are responsible for approximately 50% of the oxygen in the atmosphere and contribute greatly to carbon cycling as demonstrated by their quick turnover time and resulting 8.2 x 10^29^ cells/year.
+
+* **What is the difference between an autotroph, heterotroph, and a lithotroph based on information provided in the text?**
+
+**Autotrophs:** prokaryotes that produce their own food (fix CO2 to organic matter), primarily using energy from the sun.
+
+**Heterotrophs:** prokaryotes that consume organic carbon to produce energy and synthesize building blocks of life.
+
+**Lithotrophs:** prokaryotes that use inorganic compounds as an energy source to produce buidling blocks of life.
+
+* **Based on information provided in the text and your knowledge of geography what is the deepest habitat capable of supporting prokaryotic life? What is the primary limiting factor at this depth?**
+
+The Mariana Trench (10,994 meters, 11 km) is the deepest part of the ocean, and it is an environment that supports prokaryotic life. Because subsurface sediments below the water layer also support prokaryotic life, the argument could be made that the deepest habitat to host prokaryotic life is the subsurface sediment layer of the trench. Subsurface environments on land may contain prokaryotes further below that of the Mariana Trench. However, not much is currently known about life existing below these depths due to challenges in retrieving uncontaminated samples from these areas.
+
+*Deepest habitat: Mariana Trench (10,994 meters, 10.9 km) + 4.5 km including subsurface sediments, depending on temperature.* 
+
+*Primary limiting factor: temperature. Change in temperature as getting deeper is about 22 ˚C/km.*
+
+* **Based on information provided in the text your knowledge of geography what is the highest habitat capable of supporting prokaryotic life? What is the primary limiting factor at this height?**
+
+Prokaryotes have been found in the atmosphere at altitudes as great as 57-77 km. Mount Everest (8,848 meters, 8.8 km) is the highest geographical location on Earth, and therefore would be the highest habitat capable of supporting prokaryotic life. Is it capable of supporting prokaryotic life? Primary limiting factors at this height include temperature. Some prokaryotes, psychrophiles, have adapted to such low temperatures. Nutrients are also limited at high altitude; Less atoms are found in the upper atmosphere and thus less material is available to compose the building blocks of life. This would result in slower growth. UV radiation as well as pressure are limiting to life at high altitudes because they can damage cells.
+
+*Highest habitat: Mount Everest (8,848 meters, 8.8 km).*
+
+*Primary limiting factor: temperature and building blocks of life*
+
+* **Based on estimates of prokaryotic habitat limitation, what is the vertical distance of the Earth’s biosphere measured in km?**
+
+Lower limit: Mariana Trench: 10,994 meters (11 km) deep + 4.5km = 15.5 km.
+
+Upper limit: Mount Everest: 8,848 meters (8.8 km) high, but the upper limit is much higher if it includes the atmosphere as an "habitat".
+
+*Vertical distance of the Earth's biosphere: 15.5 km + 8.8 km = 24.3 km (+ potential atmosphere).*
+
+* **How was annual cellular production of prokaryotes described in Table 7 column four determined? (Provide an example of the calculation)**
+
+Annual cellular production, in cells/year x 10^29^ was calculated with the following formula:
+*Cells/year = Population Size x 365 days/turnover time (days)*
+or 
+*Cells/year = Population Size x (turnover/year)*
+
+Viruses are very important as modulators of metabolism but also community structure, abundance, and turnover time/rates. Viral proteins can impact the metabolic potential of prokaryotes. 
+
+* **What is the relationship between carbon content, carbon assimilation efficiency and turnover rates in the upper 200m of the ocean? Why does this vary with depth in the ocean and between terrestrial and marine habitats?**
+
+Carbon content along with carbon assimilation efficiency determine the upper bound limit on the turnover rates seen in the upper 200 m of the ocean. This varies with depth in the ocean, and between terrestrial and marine habitats because the abundance of carbon in each habitat is different.
+
+* **How were the frequency numbers for four simultaneous mutations in shared genes determined for marine heterotrophs and marine autotrophs given an average mutation rate of 4 x 10^-7^ per DNA replication? (Provide an example of the calculation with units. Hint: cell and generation cancel out)**
+
+(1 year x 365 days/year x 24 hours/day)/((4 x 10^-7^)^4^ mutations/cell)*(8.2 x 10^29^ cells/year)) =  4 simultaneous mutations every 0.4 hours
+
+*Turnover time for marine heterotrophs above 200m: 16 days*
+
+*365 days/16 = 22.8 turnover/year*
+
+*(3.6 x 10^28^ cells) x 22.8 turnover/year = 8.2 x 10^29^ cells regenerated/year*
+
+*mutation rate per gene per DNA replication = 4 x 10^-7^*
+
+*4 simultaneous mutations in every gene shared by population: (4 x 10^-7^)^4^ = 2.56 x 10^-26^*
+
+* **Given the large population size and high mutation rate of prokaryotic cells, what are the implications with respect to genetic diversity and adaptive potential? Are point mutations the only way in which microbial genomes diversify and adapt?**
+
+ A large mutation rate means that there is a great potential for multiple point mutations in a single replication. This allows for quick adaptation by creating a more diverse pool of mutants to be selected from. Genetic diversity will be extremely high when small scale changes to sequence are considered. Long term "species" level biodiversity will mostly be determined by competition and environmental pressures. Horizontal gene transfer can allow new genes to proliferate in a microbial community assuming the gene is successful in the organism it is "born" in.
+
+* **What relationships can be inferred between prokaryotic abundance, diversity, and metabolic potential based on the information provided in the text?**
+
+High abundance allows for high diversity by increasing the potential for mutations and simultaneous mutations. Metabolic potential is dependent on both abundance and diversity. Diversity determines the pool of available genes to be used in metabolic pathways and abundance determines the magnitude of the effect of these pathways.
+
+### Problem set 02 "Microbial Engines"
+
+[Falkowski *et al.* 2008](http://science.sciencemag.org/content/320/5879/1034)
+
+#### Learning objectives:
+
+* **Discuss the role of microbial diversity and formation of coupled metabolism in driving global biogeochemical cycles.**
+
+#### General Questions:
+
+* **What are the primary geophysical and biogeochemical processes that create and sustain conditions for life on Earth? How do abiotic versus biotic processes vary with respect to matter and energy transformation and how are they interconnected?**
+
+Geophysical (abiotic): tectonic and atmospheric photochemical processes, which are based on acid/base chemistry.
+
+Biochemical (biotic): microbial processes, which are based on redox reactions.
+
+Abiotic processes rely on acid/base chemistry (the transfer of protons without electrons) while biotic processes rely on redox reactions (the transfer of electrons and protons). Therefore, the biotic processes are mostly responsible for the transformation of energy while biotic processes are mostly responsible for matter transformation. Some biotic processes can replenish substrates that are essential for life which otherwise would be depleted as abiotic processes come to thermodynamic equilibrium. 
+
+* **Why is Earth’s redox state considered an emergent property?**
+
+The earth's redox state is considered an emergent property because it depends on both geochemical processes and microbial metabolic processes, which are both dynamic and always changing. 
+
+* **How do reversible electron transfer reactions give rise to element and nutrient cycles at different ecological scales? What strategies do microbes use to overcome thermodynamic barriers to reversible electron flow?**
+
+Reversible electron transfer reactions give rise to element and nutrient cycles because of the thermodynamic conditions that make each reaction favorable. Specifically, the rate at which each reaction occurs is determined by the conditions of the environment (i.e. abundance of substrates, products, etc.), thus allowing for nutrients to cycle in a stable manner. In this manner, the synergistic cooperation of different microbial communities can lead to different environments favorable to such reversible electron transfer reactions.
+
+* **Using information provided in the text, describe how the nitrogen cycle partitions between different redox “niches” and microbial groups. Is there a relationship between the nitrogen cycle and climate change?**
+
+The different stages of the nitrogen cycle require different groups of microbes and different levels of oxygen, and is therefore partitioned between different redox "niches".
+
+During nitrogen fixation, nitrogen gas from the atmosphere is fixed to ammonium. This process occurs in surface waters where atmospheric nitrogen gas is in contact with water and therefore occurs in aerobic environments. Interestingly, the enzyme nitrogenase, which catalyzes this reaction, is inhibited by oxygen. Yet, nitrogen-fixing microbes have evolved a way to do so in aerobic environments. 
+
+Since oxygen is required to oxidize ammonium, nitrification occurs in aerobic environments and is a two-stage pathway. The two steps of nitrification (ammonia to nitrite, and nitrite to nitrate) are catalyzed by two different groups of microbes: ammonia-oxidizing bacteria/archaea and other nitrifying bacteria. These oxidation reactions are couple to carbon fixation in many cases.
+
+Denitrification, the anaerobic reduction of nitrate and nitrite to nitrogen gas, occurs in anaerobic environments and is coupled to oxidation of organic matter.
+
+This shows how modular the nitrogen cycle is and how different redox "niches" are interconnected. In this connection, chemical species are exchanged between groups of microbes located in different redox niches and are utilized for different purposes. 
+
+Indirectly, the nitrogen cycle is connected to climate change. All microbes require nitrogen to synthesize protein and nucleic acids, and the only method of nitrogen fixation is via microorganisms. The nitrogen cycle is what controls the amount of available fixed nitrogen, which in turn affects the number of microbes carrying out various other reactions, which in turn produces the Earth's atmosphere. The nitrogen cycle is also directly connected to climate change, as nitrous oxide can be produced during denitrification. Nitrous oxide is known as a greenhouse gas.
+
+* **What is the relationship between microbial diversity and metabolic diversity and how does this relate to the discovery of new protein families from microbial community genomes?**
+
+Although there is enormous genetic diversity in nature, there remains a relatively stable
+set of core genes coding for the major redox reactions essential for life and biogeochemical cycles. Thus, microbial diversity does not necessarily entail diversity in proteins involved in metabolism. 
+
+It is hypothesized that there is limitless evolutionary diversity in nature. The rate of discovery of unique protein families has been proportional to the sampling effort, with the number of new protein families increasing approximately linearly with the number of new genomes sequenced.
+
+* **On what basis do the authors consider microbes the guardians of metabolism?**
+
+Microbes are considered guardianship of metabolism on a temporary and simultaneous basis. This is because of the nature of microbial evolution from horizontal and vertical gene transfer which can change what phenotype is dominant at select time. A dominant phenotype protects the metabolic pathway in the environment. If it does not survive environmental perturbations, (applying selective pressures on pathway genes) it will disappear. Humans could possibly replicate the individual pathways, but the overall metabolic biogeochemical processes that control the flow of electrons can only be done by microbes.
 
 ### Writting assessment 01
 
 ## References
+
+Falkowski, P. G., Fenchel, T., & Delong, E. F. (2008). The Microbial Engines That Drive Earths Biogeochemical Cycles. Science, 320(5879), 1034-1039. doi: [10.1126/science.1153213](http://science.sciencemag.org/content/320/5879/1034)
+
+Nisbet, E. G., & Sleep, N. H. (2001). The habitat and nature of early life. Nature, 409(6823), 1083-1091. doi: [10.1038/35059210](https://www.nature.com/articles/35059210)
+
+Rockström, J., Steffen, W., Noone, K., Persson, Å, Chapin, F. S., Lambin, E. F., . . . Foley, J. A. (2009). A safe operating space for humanity. Nature, 461(7263), 472-475. doi: [10.1038/461472a](https://www.nature.com/articles/461472a)
+
+Whitman, W. B., Coleman, D. C., & Wiebe, W. J. (1998). Prokaryotes: The unseen majority. Proceedings of the National Academy of Sciences, 95(12), 6578-6583. doi: [10.1073/pnas.95.12.6578](http://www.pnas.org/content/95/12/6578)
+
+# Module 02
+
+## Portfolio check
+
+* Evidence worksheet_04
+    + Completion status:
+    + Comments:
+* Problem Set_03
+    + Completion status:
+    + Comments:
+* Writing assessment_02
+    + CANCELED
+* Additional Readings
+    + Completion status:
+    + Comments 
+
+## Remapping the Body of the World 
+
+### Evidence worksheet 04 "Proteorhodopsin photosystem"
+
+[Martinez *et al.* 2007](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1838496/)
+
+#### Learning objectives:
+
+* **Discuss the relationship between microbial community structure and metabolic diversity**
+
+* **Evaluate common methods for studying the diversity of microbial communities**
+
+* **Recognize basic design elements in metagenomic workflows**
+
+#### General questions:
+
+* **What were the main questions being asked?**
+
+The authors of this paper wanted to get a more detailed characterization of the genetics and biochemistry of the proteorhodopsin (PR)-based photosystem in marine picoplankton communities of the photic zone.
+
+What genes generate a fully functional PR photosystem? Do these genes allow photophosphorylation when cells are exposed to light (are they sufficient for photophosphorylation)? Why is the PR system ubiquitous in marine prokaryotes?
+
+* **What were the primary methodological approaches used?**
+
+Screening:
+The authors used a large-insert DNA fosmid library prepared from ocean surface water picoplankton and screened for PR clones on retinal-containing LB agar medium. To select for PR-containing clones, clones were selected based on wether or not they showed a orange or red phenotype (which is expected for PR-containing clones growring on this type of media).
+
+Sequencing:
+The authors a collection of transposon-insertion clones to allow for a rapid DNA sequencing and localization of insertion mutants. Insertion mutant can allow for phenotypic analysis of gene functions. The authors also used a fosmid system in which the copy number can be increased.
+
+Phenotypic analysis was preformed using selective, but also differential media.
+
+Light-activated proton translocation was assessed by measuring light-dependent pH fluctuations. Photophosphorylation was measured using a luciferase-based assay.
+
+* **Summarize the main results or findings.**
+
+Six genes are sufficient to generating a fully functional PR photosystem in E.coli and therefore in ocean surface water picoplankton. Out of these 6 genes, 5 encode for accessory photopigment biosynthetic proteins while one encode for PR. This 6-gene protein system allows for light-activated proton translocation and for photophosphorylation (ATP synthesis) in cells. Given it's size, a single horizontal gene transfer event can lead to acquired phototrophic capababilities and could explain the ubiquitous PR system in microbial communities of the ocean surface waters. 
+
+* **Do new questions arise from the results?**
+
+Can this method of identifying fosmid library clones can be applied to other gene sets/would other biomarkers or phenotypes can be used to select for specific clones?
+
+Are there other genetic systems that can be easily acquired by microbial populations in the environment?
+
+Since PR photosystems have different UV absorption minima and maxima, would the type of PR acquired by a certain microbe be based on its environment, and therefore decrease its ability to thrive in other light enviornments?
+
+Would more organisms contain a PR photosystem since it is so easily transferable (more than 13% of bacteria in marine picoplankton populations?)?
+
+* **Were there any specific challenges or advantages in understanding the paper (e.g. did the authors provide sufficient background information to understand experimental logic, were methods explained adequately, were any specific assumptions made, were conclusions justified based on the evidence, were the figures or tables useful and easy to understand)?**
+
+The authors did not properly introduce/could have alaborated on the current methods being used in the identification and characterization of functional genes and how their method used for PR is revolutionary. The methods were described adequatly but some background information such as more information on the Fosmid library consruction and other techniques/approaches was missing in order to understand the experimental logic. More figures to represent the library screening or copy-controlled mechanisms could have been helpful to understand some of the methods, but most figures were helpful. The conclusions are justified, although more studies would have to be done to confirm how PR genes easily transfer between organisms and if it is an easily acquired capabality. 
+
+### Problem set 03 “Metagenomics: Genomic Analysis of Microbial Communities”
+
+[Wooley *et al.* 2009](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000667)
+
+[Madsen 2005](https://www.nature.com/articles/nrmicro1151)
+
+* **How many prokaryotic phyla and candidate divisions have been described and how many have no cultured representatives (microbial dark matter)?**
+
+As of 2014, 13 540 prokaryotic species with formal scientific names were included in the NCBI taxonomy database ( [Federhen 2014](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4383940/) ). Out of these, 13 029 are part of the bacteria domain and 511 of the archaea domain. This number does not include species without formal names and has most likely increased over the past year or so. Indeed, the number of "validly named" bacterial and archaeal species is expected to greatly surpass 13 000 by the end of 2016 ( [Amann and Rosselló-Móra 2016](http://mbio.asm.org/content/7/4/e00999-16.full) ). 
+
+To touch more on prokaryotic "divisions": according to a recent study by Solden *et al.* ( [2016](https://www.sciencedirect.com/science/article/pii/S1369527416300558) ), 89 bacterial phyla and 20 archaeal phyla had been identified by small subunit rRNA by 2016. However, as much as 1 500 bacterial phyla are thought to exist. In this context, "divisions" are considered as phylum-level lineages which are the highest level grouping.
+
+According to a study by Hugenholts ( [2002](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC139013/) ), there is a major bias towards the "big four" bacterial phyla since they are culturable in a lab environments. Numbers show that ~63% of phylum-level lineages have cultured representatives while ~37% do not. It is widely accepted that more than 99% of prokaryotes in an environmental sample are not culturable in a lab environment. Therefore, these numbers definitely show a bias towards culturable microorganisms. Note that "non-culturable" is a subjective term since improvement in growth medium and understanding of unique prokaryotic environments could allow these organisms to grow in a lab environment. A slightly more recent study showed that out of 52 identifiable major lineages, only 26 had cultured representatives ( [Rappé and Giovannoni 2003](https://www.ncbi.nlm.nih.gov/pubmed/14527284) ). With the recent advance of sequencing technology, this bias must have decreased and the numbers may show a more realistic proportion of unculturable vs. culturable prokaryotes in online databases. 
+
+* **How many metagenome sequencing projects are currently available in the public domain and what types of environments are they sourced from?**
+
+As per [EBI Metagenomics](https://www.ebi.ac.uk/metagenomics/):
+
+As of today, 110 217 metagenomic deta sets/porjects exist on the EBI Metagenomics website. Most data sets are public but a few subsets are pirvate. These project metagenomic sequences originate from a multitude of environments: soil, human, engineered, marine, freshwater, mammals, plants, grassland, etc.
+
+As per the [DOE Join Genome Institute - IMG](https://img.jgi.doe.gov/cgi-bin/m/main.cgi):
+
+As of today, 9 877 metagenome sequencing projects are currently available in the DOE JGI public domain. These projects are sourced from air, aquatic and terrestrial envrionments. There are also non-environmental project sources from host-associated samples and engineering environments.
+
+* **What types of online resources are available for warehousing and/or analyzing environmental sequence information (provide names, URLS and applications) ?**
+
+**Shotgun metagenomics:**
+
+Data warehousing: [ING/M](https://img.jgi.doe.gov/), [MG-RAST](http://www.mg-rast.org/), [NCBI](https://www.ncbi.nlm.nih.gov/).
+These are databases with different levels of currated datasets.
+
+Assembly: [EULER-SR](https://omictools.com/euler-sr-tool)
+
+Binning: [S-GCOM](https://www.ncbi.nlm.nih.gov/pubmed/18442374)
+
+Annotation: [KEGG](http://www.genome.jp/kegg/)
+
+Analysis pipelines: [Megan 5](http://ab.inf.uni-tuebingen.de/software/megan5/)
+
+**Marker gene metagenomics:**
+
+Standalone software: [OTUbase](https://www.bioconductor.org/packages/release/bioc/html/OTUbase.html)
+
+Analysis pipelines: [SILVA](https://www.arb-silva.de/) (gold standard for rRNA identification)
+
+Denoising: [Amplicon Noise](http://nebc.nox.ac.uk/bioinformatics/docs/Ampliconnoise.html)
+
+Databases: [Ribosomal Database Project](https://rdp.cme.msu.edu/) (RDP, gold standard for rRNA identification)
+
+* **What is the difference between phylogenetic and functional gene anchors and how can they be used in metagenome analysis?**
+
+Phylogenetic gene anchors are slow evolving marker genes containing variable regions, such as 16S rRNA/rDNA, that can be used to taxonomically identify microorganisms. For example, the 16S rRNA gene can be used in metagenome analysis to identify metabolically active prokaryotes in a select sample. In addition, only the phylogenetic gene anchor can be sequenced to provide an estimate of diversity and community composition. A phylogenetic tree can then be built based on how different these variable regions are between microorganisms ( [Krause *et al.* 2008](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2367736/) ).
+
+Functional gene anchors are similar to phylogenetic gene anchors but represent certain metabolic pathways present in certain members on the community. These markers can be used to track the metabolic potential of a community, but can also be used to built a phylogenetic tree inside a specific subgroup of a community with the same metabolic function and see how they are related ( [The New Science of Metagenomics 2007](https://www.ncbi.nlm.nih.gov/books/NBK54007/) ).
+
+* **What is metagenomic sequence binning? What types of algorithmic approaches are used to produce sequence bins? What are some risks and opportunities associated with using sequence bins for metabolic reconstruction of uncultivated microorganisms?**
+
+( [Wooley *et al.* 2009](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000667) )
+
+Metagenomic sequence binning is the process by which sequence data is associated to its original OTU. It groups sequence reads together that come or are thought to come from the same genome. A typical contamination threshold used in this process is 5% (meaning that 5% of sequence reads inside a bin do not belong to this OTU/bin).
+
+Types of algorithmic approaches used to produce sequence bins include composition-based binning (TETRA, GSOM,S-GSOM) and phylogenetic binning (or similarity-based binning, MEGAN, CARMA). Composition-based binning use characteristics such as GC content, k-mer content and condon usage while phylogenetic binning use reference sequences to classify sequence to its correct bin or OTU.
+
+Composition-based binning is great since it does not require reference sequences. However, it may be problematic when OTUs are closer in identity and more numerous in a sample. Phylogenetic binning is great when sequences in the sample have similarities to reference sequences but is not adequate for identifying organisms that have never been sequenced, since they lack reference sequences. Risk associated with metagenomic binning include grouping reads that have similar characteristics but do not originate from the same cell (based on k-mer content, codon usage, etc.). Defining what a species is and setting threshold is a crucial part of this process.
+
+* **Is there an alternative to metagenomic shotgun sequencing that can be used to access the metabolic potential of uncultivated microorganisms? What are some risks and opportunities associated with this alternative?**
+
+( [Wooley *et al.* 2009](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000667) )
+
+Sequencing of the phylogenetic gene anchor 16S rRNA can be done to understand the metabolic activity of the microbes in the community. This method, however, only provides with the community composition and not the metabolic potential. On this note, the same type of sequencing can be done with functional gene anchors to understand what metabolic pathways are present in a sample community.
+
+Universal primers need to be selected prior to the experiment for amplifying and sequencing these gene anchors. Risks associated with this method include the selection of innapropriate primers: if microorganisms in a sample differ greatly from the most known species, this experiment will result in many OTUs or functional gene anchors not being sequenced, and therefore not being identified. In addition, horizontal gene transfer and the different numbers gene copy in organisms can also alter results.
+
+Other alternatives:FISH probing, functional screens (biocehmical, etc), 3^rd^ generation sequencing ( [Nanopore](https://nanoporetech.com/) ), single cell sequencing (Single-cell amplified genomes, SAGs).
+
+## References
+
+Amann, R., & Rosselló-Móra, R. (2016). After All, Only Millions? MBio, 7(4). doi: [10.1128/mbio.00999-16](http://mbio.asm.org/content/7/4/e00999-16.full)
+
+Federhen, S. (2014). Type material in the NCBI Taxonomy Database. Nucleic Acids Research, 43(D1). doi: [10.1093/nar/gku1127](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4383940/)
+
+Hugenholtz, P. (2002). Exploring prokaryotic diversity in the genomic era. Genome Biol, 3(2). doi: [10.1186/gb-2002-3-2-reviews0003](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC139013/)
+
+Krause, L., Diaz, N. N., Goesmann, A., Kelley, S., Nattkemper, T. W., Rohwer, F., . . . Stoye, J. (2008). Phylogenetic classification of short environmental DNA fragments. Nucleic Acids Research, 36(7), 2230-2239. doi: [10.1093/nar/gkn038](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2367736/)
+
+Madsen, E. L. (2005). Identifying microorganisms responsible for ecologically significant biogeochemical processes. Nature Reviews Microbiology, 3(5), 439-446. doi: [10.1038/nrmicro1151](https://www.nature.com/articles/nrmicro1151) 
+
+Martinez, A., Bradley, A. S., Waldbauer, J. R., Summons, R. E., & Delong, E. F. (2007). Proteorhodopsin photosystem gene expression enables photophosphorylation in a heterologous host. Proceedings of the National Academy of Sciences, 104(13), 5590-5595. doi: [10.1073/pnas.0611470104](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1838496/)
+
+Rappé, M. S., & Giovannoni, S. J. (2003). The Uncultured Microbial Majority. Annual Review of Microbiology, 57(1), 369-394. doi: [10.1146/annurev.micro.57.030502.090759](https://www.ncbi.nlm.nih.gov/pubmed/14527284)
+
+Solden, L., Lloyd, K., & Wrighton, K. (2016). The bright side of microbial dark matter: lessons learned from the uncultivated majority. Current Opinion in Microbiology, 31, 217-226. doi: [10.1016/j.mib.2016.04.020](https://www.sciencedirect.com/science/article/pii/S1369527416300558)
+
+The New Science of Metagenomics. (2007). doi: [10.17226/11902](https://www.ncbi.nlm.nih.gov/books/NBK54007/)
+
+Wooley, J. C., Godzik, A., & Friedberg, I. (2010). A Primer on Metagenomics. PLoS Computational Biology, 6(2). doi: [10.1371/journal.pcbi.1000667](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000667)
+
+# Module 03
+
+## Portfolio check
+
+* Evidence worksheet_05
+    + Completion status:
+    + Comments:
+* Problem set_04
+    + Completion status:
+    + Comments:
+* Writing Assessment_03
+    + Completion status:
+    + Comments:
+* Additional Readings
+    + Completion status:
+    + Comments 
+    
+### Project 1
+
+* CATME account setup and survey
+    + Completion status: 
+    + Comments: 
+* CATME interim group assessment
+    + Completion status: 
+    + Comments:
+* Project 1
+    + Report (80%): 
+    + Participation (20%):
+
+## Microbial Species	Concepts
+
+## Evidence worksheet 05
+
+```{r child = "Problemset4.Rmd"}
+
+```
+
+## Writting assignment 03
+
+## Project 1
+
+# Module 04
+
+## Protfolio check
+
+### Project 2
+
+* CATME final group assessment
+    + Completion status: 
+    + Comments:
+* Project 2
+    + Report (80%): 
+    + Participation (20%):
+
+## Project 2

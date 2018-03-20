@@ -1,0 +1,222 @@
+---
+title: "Problem Set_04"
+author: "Miguel Desmarais (21421145)"
+date: "version `r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+### Problem set 04 “Fine-scale phylogenetic architecture”
+#### Learning objectives: 
+
+* Gain experience estimating diversity within a hypothetical microbial community
+
+#### Part 1: Description and enumeration
+Obtain a collection of "microbial" cells from "seawater". The cells were concentrated from different depth intervals by a marine microbiologist travelling along the Line-P transect in the northeast subarctic Pacific Ocean off the coast of Vancouver Island British Columbia. 
+
+Sort out and identify different microbial "species" based on shared properties or traits. Record your data in this Rmarkdown using the example data as a guide.
+
+Once you have defined your binning criteria, separate the cells using the sampling bags provided. These operational taxonomic units (OTUs) will be considered separate "species". This problem set is based on content available at [What is Biodiversity](http://cnx.org/content/m12179/latest/).
+
+#####Complete microbial community:
+```{r message=FALSE, warning=FALSE}
+
+library(kableExtra)
+library(knitr)
+library(tidyverse)
+
+fullcommunity = read.csv("fullcommunity.csv")
+
+fullcommunity %>% 
+  kable("html") %>%
+  kable_styling(bootstrap_options = "striped", font_size = 10, full_width = F)
+  
+```
+
+#####Microbial community in subsample:
+
+* **Construct a table listing each species, its distinguishing characteristics, the name you have given it, and the number of occurrences of the species in the collection.**
+```{r message=FALSE, warning=FALSE}
+
+mycommunity = read.csv("mycommunity.csv")
+
+mycommunity %>% 
+  kable("html") %>%
+  kable_styling(bootstrap_options = "striped", font_size = 10, full_width = F)
+  
+```
+
+* **Ask yourself if your collection of microbial cells from seawater represents the actual diversity of microorganisms inhabiting waters along the Line-P transect. Were the majority of different species sampled or were many missed?** 
+
+My collection of microbial cells from seawater does not fully represent the actual diversity of microorganisms inhabiting waters along Line-P transect. Only 32 out of the 51 species were identified in my sample compared to the full community. 
+
+#### Part 2: Collector's curve
+
+* **Create a collector's curve for your sample (not the entire original community).**
+
+```{r, message=FALSE}
+
+library(ggplot2)
+
+collector= read.csv("collector.csv")
+
+ggplot(collector, aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth() +
+  labs(x="Cumulative number of individuals classified", y="Cumulative number of species observed")
+```
+
+* **Does the curve flatten out? If so, after how many individual cells have been collected?**
+
+The collector's curve for my sample does not flatten out.
+
+* **What can you conclude from the shape of your collector's curve as to your depth of sampling?**
+
+I can conclude from the shape of my collector's curve that the depth of my sampling is not the greatest. Since the curve does not flatten out, more species would most likely be found if more sampling was done. The collector's curve and this conclusion agree with the difference in the number of species found in my sample and in the full community (32 and 51, resepctively).
+
+#### Part 3: Diversity estimates (alpha diversity)
+
+##### Diversity: Simpson Reciprocal Index
+
+$\frac{1}{D}$ where $D = \sum p_i^2$
+
+$p_i$ = the fractional abundance of the $i^{th}$ species
+
+The higher the value is, the greater the diversity. The maximum value is the number of species in the sample, which occurs when all species contain an equal number of individuals. Because the index reflects the number of species present (richness) and the relative proportions of each species with a community (evenness), this metric is a diveristy metric. Consider that a community can have the same number of species (equal richness) but manifest a skewed distribution in the proportion of each species (unequal evenness), which would result in different diveristy values.
+
+* **What is the Simpson Reciprocal Index for your sample?**
+
+```{r}
+
+orangebear = 1/132
+pinkbear = 2/132
+yellowbear = 5/132
+whitebear = 5/132
+greenbear = 4/132
+jellyrodsyellow = 6/132
+jellyrodsorange = 9/132
+jellyrodsred = 5/132
+redswirl = 1/132
+blueswirl = 1/132
+ovalyellow = 1/132
+redfilamentous = 2/132
+cokebottlepink = 1/132
+kissessilver = 7/132
+smallbluebrick = 1/132
+smallyellowbrick = 1/132
+smallpinkbrick = 1/132
+biggreen = 1/132
+bigpurple = 1/132
+bigred = 1/132
+bigorange = 1/132
+mnmorange = 8/132
+mnmgreen = 9/132
+mnmred = 3/132
+mnmyellow= 10/132
+mnmbrown = 7/132
+mnmblue = 8/132
+skittlesyellow = 5/132
+skittlesorange = 9/132
+skittlered = 5/132
+skittlebrown = 1/132
+skittlegreen = 10/132
+
+1 / (orangebear^2 + pinkbear^2 + yellowbear^2 + whitebear^2 +
+greenbear^2 + jellyrodsyellow^2 + jellyrodsorange^2 + jellyrodsred^2 + redswirl^2 + blueswirl^2 + ovalyellow^2 + redfilamentous^2 + cokebottlepink^2 + kissessilver^2 + smallbluebrick^2 + smallyellowbrick^2 + smallpinkbrick^2 + biggreen^2 + bigpurple^2 + bigred^2 + bigorange^2 + mnmorange^2 + mnmgreen^2 + mnmred^2 + mnmyellow^2 + mnmbrown^2 + mnmblue^2 + skittlesyellow^2 + skittlesorange^2 + skittlered^2 + skittlebrown^2 + skittlegreen^2)
+```
+
+* **What is the Simpson Reciprocal Index for your original total community?**
+
+Calculated on spreadsheet:
+23.1744939
+
+##### Richness: Chao1 richness estimator
+Another way to calculate diversity is to estimate the number of species that are present in a sample based on the empirical data to give an upper boundary of the richness of a sample. Here, we use the Chao1 richness estimator. 
+
+$S_{chao1} = S_{obs} + (\frac{a^2}{2b})$
+
+$S_{obs}$ = total number of species observed
+a = species observed once
+b = species observed twice or more
+
+* **What is the chao1 estimate for your sample?**
+
+ $S_{chao1}$ =
+
+```{r}
+32 + 13^2/(2*19)
+```
+
+* **What is the chao1 estimate for your original total community?**
+
+ $S_{chao1}$ =
+
+```{r}
+51 + 13^2/(2*38)
+```
+
+#### Part 4: Alpha-diversity functions in R
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(dplyr)
+library(vegan)
+
+mycommunity_diversity = 
+  mycommunity %>% 
+  select(name, occurences) %>% 
+  spread(name, occurences)
+
+fullcommunity_diversity = 
+  fullcommunity %>% 
+  select(name, occurences) %>% 
+  spread(name, occurences)
+
+mycommunity_diversity
+fullcommunity_diversity
+```
+
+* **What are the Simpson Reciprocal Indices for your sample and community using the R function?**
+
+Simpson Reciprocal Index for my sample:
+```{r}
+diversity(mycommunity_diversity, index="invsimpson")
+```
+
+Simpson Reciprocal Index for community:
+```{r}
+
+diversity(fullcommunity_diversity, index="invsimpson")
+```
+
+The Simpson Reciprocal Indices values obtained from the R function do match the value calaculated for my sample and community.
+
+* **What are the chao1 estimates for your sample and community using the R function? Verify that these values match your previous calculations.**
+
+Chao1 richness estimate for my sample:
+```{r}
+specpool(mycommunity_diversity)
+```
+
+Chao1 richness estimate for community:
+```{r}
+specpool(fullcommunity_diversity)
+```
+
+The Chao1 R function values do not matched my calculated value for my sample and community. It seems like the R function uses a different way of calculating Chao1 in which the total number of species observed is the chao1 value. Therefore, my calculated Chao1 values are slightly higher for both my sample and the community. 
+
+#### Part 5: Concluding activity
+If you are stuck on some of these final questions, reading the [Kunin et al. 2010](https://www.ncbi.nlm.nih.gov/pubmed/19725865) and [Lundin et al. 2012](https://www.ncbi.nlm.nih.gov/pubmed/23760801) papers may provide helpful insights. 
+
+* **How does the measure of diversity depend on the definition of species in your samples?**
+
+The measure of diversity, alpha diversity in this case, directly depends on the definition of species in my sample and community. Since both the Simpson Reciprocal Indices value and the Chao1 value are essentially based, in different ways, on the total number of species observed, changing the definition of species will have an effect on the number of species observed and alpha diversity. 
+
+For example, many studies use the 97% identity threshold value to definie species. Raising this value to 99% would result in more species observed in a sample (overestimating diversity) while lowering this threshold to 95%, for example, would results in more "identical" sequences and therefore less species obserbed in a sample (underestimating diversity).
+
+* **Can you think of alternative ways to cluster or bin your data that might change the observed number of species?**
+
+Binning or clustering data based on the GC content, codon usage or percent identity will most likely result in a different number of species observed in a sample since these methods are based on different sequence characteristics.
+
+* **How might different sequencing technologies influence observed diversity in a sample?**
+
+Inflated diversity have been previously associated with pyrosequencing errors. Sanger, a sequencing technology with a relatively low error rate, has shown a constant overestimation of diversity.Therefore, sequencing technologies with a higher base calling/sequencing error rate such as PacBio or Oxford Nanopore will most likely result in much more species observed in a sample. This is due to the potential introduction of wrong bases in a certain DNA sequence. This may in turn lead to the sequence falling bellow he 97% identity threshold and therefore being categorized as a different and new species observed in the sample.  
