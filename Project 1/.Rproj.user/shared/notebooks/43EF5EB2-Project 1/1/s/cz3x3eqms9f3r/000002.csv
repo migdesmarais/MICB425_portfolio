@@ -1,0 +1,11 @@
+"0","library(tidyverse)"
+"2","Warning message:
+"
+"2","package ‘phyloseq’ was built under R version 3.4.2 
+"
+"0","library(phyloseq)"
+"0","library(ggplot2)"
+"0","library(dplyr)"
+"0","library(stringr)"
+"0","library(magrittr)"
+"0","library(knitr)"

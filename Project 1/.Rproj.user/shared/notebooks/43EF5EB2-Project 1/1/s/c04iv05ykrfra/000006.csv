@@ -1,0 +1,4 @@
+"0","m.meta.alpha %>% "
+"0","  ggplot() +"
+"0","    geom_point(aes(x=O2_uM, y=Shannon)) +"
+"0","    labs(title=""Alpha-diversity across oxygen concentration for mothur"", y=""Shannon's diversity index"", x=""Oxygen (uM)"")"

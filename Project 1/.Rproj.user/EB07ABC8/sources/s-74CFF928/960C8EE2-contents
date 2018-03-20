@@ -1,0 +1,24 @@
+library(tidyverse)
+library(phyloseq)
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(magrittr)
+library(knitr)
+library(gridExtra)
+library(grid)
+
+load("mothur_phyloseq.RData")
+load("qiime2_phyloseq.RData")
+
+set.seed(4831)
+m.norm = rarefy_even_depth(mothur, sample.size=100000)
+q.norm = rarefy_even_depth(qiime2, sample.size=100000)
+
+m.percent = transform_sample_counts(m.norm, function(x) 100 * x/sum(x))
+q.percent = transform_sample_counts(q.norm, function(x) 100 * x/sum(x))
+
+phyloGlom = tax_glom(q.percent, "Phylum")
+glomTax = tax_table(phyloGlom)[,"Phylum"]
+glomOTU = data.frame(otu_table(phyloGlom))
+rownames(glomOTU) = glomTax[,"Phylum"]
