@@ -1,11 +1,145 @@
 ---
-title: "Project 1"
-author: "Miguel Desmarais (21421145)"
-date: '2018-03-12'
-output: html_document
+title: "Project 1 report"
+author: "The awesome group 6"
+date: "version `r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_float:
+      collapsed: no
 ---
 
-## Methods
+# Abstract
+
+Analysis of sequences obtained from Saanich Inlet using mothur and QIIME2 revealed peak community alpha-diversity at a depth of approximately 100m which contains approximately 38uM of dissolved oxygen. Lowest diversity was observed at greater depth and with lower oxygen levels. Further analysis of taxonomic levels revealed *Proteobacteria* as the most abundant phylum within all samples. In order to investigate how microbial communities differ across depth and oxygen gradients within the Saanich Inlet, we focused on the phylum *Chloroflexi*. Analysis revealed a positive correlation between depth and *Chloroflexi* abundance. This correlation was significant only when analysis was based on QIIME2-generated ASVs, and not mothur-generated OTUs. In addition, there exists a negative correlation between oxygen concentration and *Chloroflexi* abundance. Similarly, significance was only reported using QIIME2-generated ASVs. The analysis of data using QIIME2 identified four classes within the phylum *Chloroflexi*: *Dehalococcoidia*, *Anaerolineae*, SAR202, and JG30-KF-CM66, while mothur identified two classes within this phylum: *Anaerolineae*, and SAR202. Lastly, changes in the abundance of OTUs and ASVs were correlated with depth and oxygen concentration. No correlation was found to be significant. The abundances of 24 (of 34) OTUs and 38 (of 47) ASVs were positively correlated with depth, while all OTUs and 46 ASVs were negatively correlated with oxygen concentration. However, the presence of outliers in data analyzed by both mothur and QIIME2 may have biased the trend line and reduced model significances. Although, the absence of sufficient data limits us from classifying them as outliers. The differences observed between mothur and QIIME2 indicate the role played by the choice of pipeline to analyze results.
+
+# Introduction
+
+Saanich Inlet is a seasonally anoxic fjord [1] located between Vancouver Island and the Saanich Peninsula. It is 24 km long and has a basin of up to 234 meters in depth [2]. It has a 75-meter sill which acts to protect the deeper waters [3]. Because of this sill and the constantly high input of organic material from freshwater discharge and primary production in surface waters, its conditions below 110 meters are anoxic [3]. Oxygen is replenished dependent on the season, mostly in the fall, which modifies the oxygen gradient and thereby the environmental conditions for the microbial community that inhabit the inlet [3]. Dissolved oxygen increases gradually from a minimum concentration at higher depth up to its peak concentration at the surface due to phytoplankton metabolism and atmospheric surface waters gas exchange [3]. Nitrate reduction by denitrifiers happens mostly in the deep water following oxygenation [3]. This results in a steep nitrate gradient when looking at the different depths within the fjord [3]. A study by Zaikova *et al.* found that microbial diversity was highest in the hypoxic transition area and that it decreases within the anoxic basin waters [1]. It is vital to study the roles of various microorganisms within Saanich Inlet in order to understand how they affect environmental conditions like greenhouse gases, methane, and denitrogenation on a larger scale in the world’s oceans [3].  
+
+Operational Taxonomic Units (OTUs) are defined as clusters of organisms that have been grouped based on DNA sequence similarity of a specific DNA segment known as a taxonomic marker gene. and they differ by less than a fixed and arbitrary sequence dissimilarity threshold, often 3% [4, 5]. This process, known as DNA barcoding, allows for rapid, targeted, and high throughput analysis of genetic variation in a specific genomic region such as 16s/18s rRNA sequences, leading to large scale characterization of microbial communities [4, 6]. However, new recent amplicon sequence variants (ASVs) methods have been developed with finer resolution and are independent of dissimilarity thresholds that have been used to define OTUs. ASV methods have shown higher specificity and sensitivity in comparison to OTU methods as they distinguish sequence variants as small as single nucleotides and denoise the sequences by discriminating biological sequences from errors. This is done based on the expectation that biological sequences are more abundant and more repeatedly observed than error-containing sequences [5].  
+
+Using OTU and ASV data for samples collected from the Saanich Inlet, we investigated how microbial communities differ across depth and oxygen gradients within the Saanich Inlet, with a particular focus on the phylum *Chloroflexi*. We found *Chloroflexi* of interest because its members are highly abundant in marine sediments [7] and they present a broad spectrum of metabolic characteristics such as anoxygenic photosynthesis [8], obligate aerobic and anaerobic heterotrophy [9], and even predation with a gliding motility [10]. Like many other phyla of bacteria, the members of *Chloroflexi* can be a challenge to grow in culture, with some classes yet to be cultured successfully, which has made characterizing their metabolisms a challenge [11-19]. However, new sequencing technologies have made it possible to characterize these uncultured microbes [11-19].  
+
+   In our Saanich Inlet data, we were able to identify four classes within the phylum *Chloroflexi*: *Dehalococcoidia*, *Anaerolineae*, SAR202, and JG30-KF-CM66. Members of the class *Dehalococcoidia* are widely distributed throughout marine sediments [11] and anoxic deep waters [12]. *Dehalococcoidia* grow via anaerobic organohalide respiration and are extensively studied for their potential in the bioremediation of chloride-contaminated water and soil [11, 12]. As for the class *Anaerolineae*, despite its members being prevalent in various ecosystems, only a few strains have been successfully cultured [13]. *Anaerolineae* compose one of the core populations of anaerobic bacteria involved in anaerobic digestion and possess key genes for catalyzing cellulose hydrolysis [14].The SAR202 cluster was one of the earliest discoveries of marine bacteria which inhabited the aphotic zone [15], and since then SAR202 has been found to be ubiquitous throughout the deep ocean [16]. Members of SAR202 are involved in metabolizing organosulfur compounds and likely play a major role in sulfur cycling [17]. JG30-KF-CM66 is a relatively uncharacterized clade of acidobacteria, but it has been identified in soft coal slags [18] and anoxic ocean water [19]. The characteristics of each of these classes impacts how the phylum *Chloroflexi* differs within the Saanich Inlet, and we also set out to determine if and how different sequence analysis pipelines would impact these biological conclusions.
+
+# Methods
+
+## Sample Collection and Processing
+
+Water samples from 16 depths (10-200m) from cruise 72 were collected at station S3 (48°35.500 N, 123°30.300 W) onboard MSV John Strickland. Geochemical and multi-omic information, which included 16S rRNA gene amplicon sequences (V4-5 hypervariable regions) and dissolved O2, were extracted for each depth [20, 21]. Data from 7 depths (10, 100, 120, 135, 150, 165, 200m) were further analyzed. Dissolved O2 was measured onboard by the Sea-Bird SBE 43 Photosynthetically Active Radiation sensor, and Winkler titration was carried out for samples at selected depths for sensor calibration [20]. 2L of cooled water sample at each depth was transported to the lab and filtered 12-16h after collection onto 0.22μm Strerivix filters, which were then kept at -80°C until amplicon sequencing on the Illumina MiSeq platform at the Joint Genome Institute. Base qualities were encoded in Phred33, and primers 515F and 806R were used for 16S rRNA gene amplification [21].
+
+## Data Processing
+
+Reads were independently processed through mothur and QIIME2-based pipelines, which cluster sequences based on OTUs and ASVs, respectively. Phyloseq objects were constructed at the end of each pipeline to facilitate comparison.
+
+### Mothur pipeline
+Sequenced reads were first assembled into contigs, which were screened and de-duplicated so that the remainder 1) were between 20bp and 600bp long, 2) had fewer than 8 homopolymers and 3) had no ambiguous bases. 
+
+```
+make.file(inputdir=[filePath]/Saanich, prefix=Saanich)
+
+make.contigs(file=Saanich.files, processors=10)
+
+summary.seqs(fasta=Saanich.trim.contigs.fasta)
+
+screen.seqs(fasta=Saanich.trim.contigs.fasta, group=Saanich.contigs.groups, maxambig=0, maxhomop=8, minlength=200, maxlength=600)
+
+unique.seqs(fasta=Saanich.trim.contigs.good.fasta)
+
+summary.seqs(fasta=Saanich.trim.contigs.good.unique.fasta, count=Saanich.trim.contigs.good.count_table)
+```
+
+Configs were trimmed so that they only align to bases 10368 to 25434 in the SILVA databases (release 128), and uninformative bases were removed. Resultant sequences were de-duplicated again.
+
+``` 
+align.seqs(fasta=Saanich.trim.contigs.good.unique.fasta, reference=silva.nr_v128.align, flip=T, processors=10)
+
+summary.seqs(fasta=Saanich.trim.contigs.good.unique.align, count=Saanich.trim.contigs.good.count_table)
+
+screen.seqs(fasta=Saanich.trim.contigs.good.unique.align, count=Saanich.trim.contigs.good.count_table, summary=Saanich.trim.contigs.good.unique.summary, start=10368, end=25434, processors=10)
+
+filter.seqs(fasta=Saanich.trim.contigs.good.unique.good.align, vertical=T, trump=.)
+
+unique.seqs(fasta=Saanich.trim.contigs.good.unique.good.filter.fasta, count=Saanich.trim.contigs.good.good.count_table)
+```
+
+Sequences with 3 or fewer differences were pre-clustered to reduce sequencing errors. Chimeric sequences and singletons were removed from pre-clusters.
+Pre-clusters were clustered de novo (97% sequence similarity to be able to distinguish at the species level) to determine the final OTUs.
+
+```
+pre.cluster(fasta=Saanich.trim.contigs.good.unique.good.filter.unique.fasta, count=Saanich.trim.contigs.good.unique.good.filter.count_table, diffs=3)
+
+summary.seqs(fasta=Saanich.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=Saanich.trim.contigs.good.unique.good.filter.unique.precluster.count_table)
+
+chimera.uchime(fasta=Saanich.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=Saanich.trim.contigs.good.unique.good.filter.unique.precluster.count_table, dereplicate=t)
+
+remove.seqs(fasta=Saanich.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=Saanich.trim.contigs.good.unique.good.filter.unique.precluster.count_table, accnos=Saanich.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.accnos)
+
+dist.seqs(fasta=Saanich.final.fasta, processors=15)
+
+cluster.split(column=Saanich.final.dist, count=Saanich.final.count_table, method=opti, processors=10, large=T)
+
+make.shared(list=Saanich.final.opti_mcc.unique_list.list, count=Saanich.final.count_table, label=0.03)
+```
+
+Clusters were classified using the SILVA database, and resulting taxonomies were condensed.
+
+```
+classify.seqs(fasta=Saanich.final.fasta, count=Saanich.final.count_table, template=silva.nr_v128.align, taxonomy=silva.nr_v128.tax, cutoff=80, processors=10)
+
+classify.otu(list=Saanich.final.opti_mcc.unique_list.list, taxonomy=Saanich.final.nr_v128.wang.taxonomy, count=Saanich.final.count_table, label=0.03, cutoff=80, basis=otu, probs=F)
+```
+
+### QIIME2 pipeline
+Reads were demultiplexed, imported into QIIME2, and summarized to determine quality parameters.
+
+```
+qiime tools import \
+  --type 'SampleData[PairedEndSequencesWithQuality]' \
+  --input-path file/path/here/pe-33-manifest.csv \
+  --output-path paired-end-demux.qza \
+  --source-format PairedEndFastqManifestPhred33
+
+qiime demux summarize \
+  --i-data paired-end-demux.qza \
+  --o-visualization demux.qzv
+```
+
+ASVs were determined using the Dada2 protocol with only trim parameters for QC. Bases 6 to 239 were kept for the forward reads, and bases 11 to 183 were kept for reverse reads. Resultant ASVs were classified using the SILVA database (release 119) at 99% similarity.
+
+```
+qiime dada2 denoise-paired \
+  --i-demultiplexed-seqs paired-end-demux.qza \
+  --o-table table \
+  --o-representative-sequences rep-seqs \
+  --p-trim-left-f 5 \
+  --p-trim-left-r 12 \
+  --p-trunc-len-f 240 \
+  --p-trunc-len-r 184
+
+qiime feature-classifier classify-sklearn \
+  --i-classifier silva-119-99-515-806-nb-classifier.qza \
+  --i-reads rep-seqs.qza \
+  --o-classification taxonomy.qza
+```
+
+The ASV table was then converted to text format used to create a phyloseq object.
+
+```
+qiime tools export table.qza \
+  --output-dir exported-feature-table
+
+biom convert -i exported-feature-table/feature-table.biom -o feature-table.tsv \
+  --to-tsv
+```
+
+### Phyloseq object creation
+
+OTU and ASV tables were imported into R together with related taxonomies and water sample metadata. Tables were cleaned up by removing, renaming, sorting or mutating columns, and were then assembled into phyloseq objects.
+
+## Data Analysis
 
 Analysis was completed in R v3.4.3 [5] using the following packages.
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
@@ -21,9 +155,13 @@ library(grid)
 library(randomcoloR)
 ```
 
-### Data cleaning
+Alpha-diversities of clusters identified by mothur and QIIME2 from each sample were measured by the Shannon diversity index and the Chao1 richness estimator. Alpha-diversities were plotted against sample depth and oxygen concentration for both clustering methods, and were fitted using local polynomial regression models where appropriate. Relative abundances of all phylum level classifications produced by mothur and QIIME2 were also plotted for each sample. 
 
-Generate a random colour palette for use in figures.
+Relative abundances of clusters identified as *Chloroflexi* were plotted across depth and oxygen gradients. Relative abundances of each cluster were also plotted individually in a similar fashion. Significance of correlations between these variables were based on linear regression models, as all variables are continuous and there is a lack of evidence to suggest curvilinear relationships between them. 
+
+## Data cleaning
+
+A random colour palette was generated for use in figures.
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
 palette <- distinctColorPalette(40)
 ```
@@ -44,17 +182,18 @@ m.percent = transform_sample_counts(m.norm, function(x) 100 * x/sum(x))
 q.percent = transform_sample_counts(q.norm, function(x) 100 * x/sum(x))
 ```
 
-*Chloroflexi* phylum was chosen.
+The phylum *Chloroflexi* was chosen.
 ```{r eval=TRUE}
 phylum_name_mothur = "Chloroflexi"
 phylum_name_qiime2 = "D_1__Chloroflexi"
 ```
-## Results
+
+# Results
 
 ### Change of microbial community structure with depth and oxygen concentration
 #### Alpha-diversity
 
-Shannon's diversity index and Chao1 were calculated for the total microbial community across depth and oxygen concentration gradients for both mothur and QIIME2.
+Shannon diversity index and Chao1 were calculated for the total microbial community across depth and oxygen concentration gradients for both mothur and QIIME2.
 
 ```{r eval=TRUE, message=FALSE}
 # Alpha-diversity of total community for mothur
@@ -67,7 +206,7 @@ m.shannon.depth.plot <- m.meta.alpha %>%
   ggplot() +
     geom_point(aes(x=Depth_m, y=Shannon)) +
     geom_smooth(method='auto', aes(x=as.numeric(Depth_m), y=Shannon)) +
-    labs(title="Mothur", y="Shannon's diversity index", x=NULL)
+    labs(title="Mothur", y="Shannon diversity index", x=NULL)
 
 m.chao1.depth.plot <- m.meta.alpha %>% 
   ggplot() +
@@ -79,7 +218,7 @@ m.shannon.o2.plot <- m.meta.alpha %>%
   ggplot() +
     geom_point(aes(x=O2_uM, y=Shannon)) +
     # geom_smooth(method='auto', aes(x=as.numeric(O2_uM), y=Shannon)) +
-    labs(title="Mothur", y="Shannon's diversity index", x=NULL)
+    labs(title="Mothur", y="Shannon diversity index", x=NULL)
 
 m.chao1.o2.plot <- m.meta.alpha %>% 
   ggplot() +
@@ -123,18 +262,18 @@ q.chao1.o2.plot <- q.meta.alpha %>%
 grid.arrange(m.shannon.depth.plot, q.shannon.depth.plot, m.chao1.depth.plot, q.chao1.depth.plot, ncol=2, top=textGrob("Figure 1 Alpha-diversity across Depth",gp=gpar(fontsize=16,font=3)))
 ```
 
-The same patterns of alpha-diversity (Shannon's diversity index and the Chao1 richness estimator) can be observed across depth for both mothur and QIIME2 (Fig. 1). There is a slightly lower diversity in surface waters (0m) compared to 100m depth. Peak diversity is reached at ~100-120m and diversity decreases with greater depth, with a slight increase at 200m for all but Shannon's diversity index for QIIME2.  
+The same patterns of alpha-diversity (Shannon diversity index and the Chao1 richness estimator) can be observed across depth for both mothur and QIIME2 (Fig. 1). There is a slightly lower diversity in surface waters (0m) compared to 100m depth. Peak diversity is reached at ~100-120m then diversity decreases with greater depth, with a slight increase at 200m for all but Shannon diversity index for QIIME2.  
 
-Note, however, that despite the similarity in the alpha-diversity pattern, the comparison of mothur versus QIIME2 shows difference: across all depths, mothur OTU analysis resulted in a lower alpha-diversity than the QIIME2 ASV analysis when measured with the Shannon's diversity index and a higher alpha-diversity than the QIIME2 ASV analysis when measured with Chao1.
+Note, however, that despite the similarity in the alpha-diversity pattern, the comparison of mothur versus QIIME2 shows difference: across all depths, mothur OTU analysis resulted in a lower alpha-diversity than the QIIME2 ASV analysis when measured with the Shannon diversity index and a higher alpha-diversity than the QIIME2 ASV analysis when measured with Chao1.
 
 ```{r eval=TRUE, message=FALSE}
 # Plotting oxygen graph
 grid.arrange(m.shannon.o2.plot, q.shannon.o2.plot, m.chao1.o2.plot, q.chao1.o2.plot, ncol=2, top=textGrob("Figure 2 Alpha-diversity across Oxygen Concentration",gp=gpar(fontsize=16,font=3)))
 ```
 
-Looking at Shannon's diversity across oxygen concentration (Fig. 2), we find that at equivalent depths QIIME2 has a greater diversity than mothur. However, the pattern exhibited by both mothur and QIIME2 data is still similar. The three lowest diversity points (note for mothur: 2 points at 2.35 overlap) are at an oxygen concentration of 0 uM, while the highest diversity is found at an oxygen concentration of ~38 uM. The band of 95% confidence intervals was not plotted due to the lack of data between ~38 uM and ~217 uM of oxygen.   
+Looking at Shannon diversity across oxygen concentration (Fig. 2), we find that at equivalent depths QIIME2 has a greater diversity than mothur. However, the pattern exhibited by both mothur and QIIME2 data is still similar. The three lowest diversity points (note for mothur: 2 points at 2.35 overlap) are at an oxygen concentration of 0 uM, while the highest diversity is found at an oxygen concentration of ~38 uM. The band of 95% confidence intervals was not plotted due to the lack of data between ~38 uM and ~217 uM of oxygen.   
 
-Comparing Chao1 at different oxygen levels for mothur and QIIME2 shows that the patterns differ. While the three lowest diversity points are still at 0 uM of oxygen, for mothur the highest diversity in terms of Chao1 is at an oxygen concentration of ~38 uM, while for QIIME2 it is at an oxygen concentration of ~32uM. For both, oxygen concentration of ~217 uM shows a notable decrease in diversity compared to lower, non-zero oxygen concentrations. Chao1 exhibited a greater drop at ~217 uM of oxygen compared to Shannon.   
+Comparing Chao1 at different oxygen levels for mothur and QIIME2 shows that the patterns somewhat differ. While the three lowest diversity points are still at 0 uM of oxygen, for mothur the highest diversity in terms of Chao1 is at an oxygen concentration of ~38 uM, while for QIIME2 it is at an oxygen concentration of ~32 uM. For both, oxygen concentration of ~217 uM shows a notable decrease in diversity. Chao1 exhibited a relatively greater drop at ~217 uM of oxygen compared to Shannon.   
 
 #### Taxonomic community composition
 ```{r eval=TRUE}
@@ -163,7 +302,7 @@ m.phyla.plot
 q.phyla.plot
 ```
 
-28 and 29 taxons were identified at the phylum level with Mothur and QIIME2, respectively (Fig. 3,4). Out of these identified phyla in both mothur and QIIME2, ~4 dominated the community composition in terms of abundance: *Proteobacteria, Bacteroidetes, Thaumarchaeota and Actinobacteria* (from most to less abundant). Other phyla that are noticeably more abundant include *Cyanobacteria, Deferribacteres, Euryarchaeota, Firmiucutes, Gemmatimonadetes, Marinimicrobia, Nitrospinae, Planctomycetes* and *Verrucomicrobia*. Our phylum of interest, *Chloroflexi*, makes up from 0 to 6% of the microbial community in the collected samples depending on depth. A more specific naming system seems to be used by mothur than QIIME2, which results in a more descriptive labelling of the population composition in the former. 
+28 and 29 taxons were identified at the phylum level with mothur and QIIME2, respectively (Fig. 3,4). Out of these identified phyla in both mothur and QIIME2, ~4 dominated the community composition in terms of abundance: *Proteobacteria, Bacteroidetes, Thaumarchaeota and Actinobacteria* (from most to less abundant). Other phyla that are noticeably more abundant include *Cyanobacteria, Deferribacteres, Euryarchaeota, Firmiucutes, Gemmatimonadetes, Marinimicrobia, Nitrospinae, Planctomycetes* and *Verrucomicrobia*. Our phylum of interest, *Chloroflexi*, makes up from 0 to 6% of the microbial community in the collected samples depending on depth. A more specific naming system seems to be used by mothur than QIIME2, which results in a more descriptive labelling of the population composition in the former. 
  
 ### *Chloroflexi* abundance with depth and oxygen concentration
 ```{r eval=TRUE}
@@ -266,9 +405,9 @@ grid.arrange(m.abd.depth.plot, q.abd.depth.plot, ncol=2, top=textGrob("Figure 5 
 grid.arrange(m.abd.o2.plot, q.abd.o2.plot, ncol=2, top=textGrob("Figure 6 Chloroflexi Abundance across Oxygen Concentration",gp=gpar(fontsize=16,font=3)))
 ```
 
-Linear regression analysis of *Chloroflexi* relative abundance across depth revealed variations between Mothur’s OTU and QIIME2’s ASV clustering (Figure 5). ASV clusters revealed a significant correlation (p<0.05), while OTU clusters did not. Both correlations were found to be positive.
+Linear regression analysis of *Chloroflexi* relative abundance across depth revealed variations between ’s OTU and QIIME2’s ASV clustering (Fig. 5). ASV clusters revealed a significant correlation (p<0.05), while OTU clusters did not. Both correlations were found to be positive.
 
-Similarly, linear regression analysis across oxygen concentration (Figure 6) revealed significant trends in terms of OTU clusters (p<0.05), but not ASV clusters. Both correlations were found to be negative.
+Similarly, linear regression analysis across oxygen concentration (Fig. 6) revealed significant trends in terms of OTU clusters (p<0.05), but not ASV clusters. Both correlations were found to be negative.
 
 ### Richness within the *Chloroflexi* phylum
 ```{r eval=TRUE}
@@ -279,6 +418,11 @@ m.filtered = m.tax_table %>%
   filter(Phylum==phylum_name_mothur) %>%
   column_to_rownames('OTU')
 m.rownumber = nrow(m.filtered)
+# Classes in OTUs
+m.classes = m.filtered %>%
+  select('Class') %>%
+  unique %>%
+  summarise(Classes = toString(Class))
 # Number of ASVs
 q.tax_table = data.frame(q.norm@tax_table)
 q.filtered = q.tax_table %>% 
@@ -286,11 +430,16 @@ q.filtered = q.tax_table %>%
   filter(Phylum==phylum_name_qiime2) %>%
   column_to_rownames('ASV')
 q.rownumber = nrow(q.filtered)
+# Classes in ASVs
+q.classes = q.filtered %>%
+  select('Class') %>%
+  unique %>%
+  summarise(Classes = toString(Class))
 ```
-For Chloroflexi, the number of OTUs was found to be `r m.rownumber`, and the number of ASVs was found to be `r q.rownumber`.
+For *Chloroflexi*, the number of OTUs was found to be `r m.rownumber`, and the number of ASVs was found to be `r q.rownumber`. The OTUs represent classes `r m.classes`, while the ASVs represent classes `r q.classes`.
 
 
-### Change of abundances of OTUs/ASVs within the Chloroflexi phylum with depth and oxygen concentration
+### Change of abundances of OTUs/ASVs within the *Chloroflexi* phylum with depth and oxygen concentration
 ```{r}
 # Example for linear model
 otu_stats = data.frame("Estimate" = numeric(0), "Std. Error"= numeric(0),"t value"= numeric(0),"Pr(>|t|)"= numeric(0))
@@ -371,13 +520,106 @@ q.percent %>%
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-Linear model statistics were performed for the abundance of each OTU and ASV in relation to depth and oxygen concentration (Appendix A Table 1-4). The linear models were subsequently plotted (Figure 7-10). No significant correlations were found between any individual OTUs/ASVs abundance and depth or oxygen concentration (p > 0.05 for all). Some of the lack of significance could be attributed to the seemingly single outliers visible in many of the plots.  
+Linear model statistics were performed for the abundance of each OTU and ASV in relation to depth and oxygen concentration (Appendix A Table 1-4). The linear models were subsequently plotted (Fig. 7-10). No significant correlations were found between any individual OTUs/ASVs abundance and depth or oxygen concentration (p > 0.05 for all). Some of the lack of significance could be attributed to the seemingly single outliers visible in many of the plots.  
 
 Although none of the correlations were significant, mothur and QIIME2 showed similar trends. For mothur ten of the `r m.rownumber` OTUs had negative correlation between abundance and depth (the rest positive), while for QIIME2 nine of the `r q.rownumber` ASVs had negative correlation between abundance and depth (the rest positive). This was while for abudance versus oxygen concentration, for mothur all OTUs had negative correlation, and for QIIME2 all but one ASVs had negative correlation.
 
 ### Mothur versus QIIME2
 
 As noted in the different sections, in general, major patterns found in a similar way in both mothur and QIIME2. Nevertheless, mothur and QIIME2 outputted in slightly different results as described in the different parts.
+
+# Discussion
+What was done and results: 
+alpha diversity for total community across 
+depth (a bit less diversity at higher depth for both m and q, most diverse at 100m, and 120m (120m onl for qiime2 chao1))
+oxygen (most diverse at ~38uM, except for qiime2 chao1 most diverse at 32uM)
+At 217um, Chao1 is relatively lower compared to Shannon for both mothur and QIIME
+total phyla abundance (proteobacteria most abundant, dominated by 4-5 phyla)
+chloroflexi abundance with 
+depth (positive correlation - higher depth more abundant - for mothur not significant, but for qiime2 significant) → likely due to the oxygen correlation, since oxygen is low at high depth
+Oxygen (negative correlation - higher oxygen concentration less abundance - for mothur not significant, for qiime2 significant)
+Richness within chloroflexi (classes in order of abundance; qiime2 was not able to identify any genuses, while mothur was)
+Mothur 34 OTUs (2 classes - Anaerolineae, SAR202_clade)
+Qiime2 47 ASVs (5 classes - Anaerolineae, SAR202_clade, JG30-KF-CM66, Dehalococcoidi, unclutured)
+Change of abundances of OTUs/ASVs within the Chloroflexi phylum with 
+Depth (nothing significant; but 10/34 OTU negative correlation, rest positive; 9/47 ASVs negative correlation, rest positive)
+Oxygen concentration (nothing significatn; all OTU showed negative correlation; 1/47 ASV showed positive, rest negative correlation)
+Outliers in both seemed to destroy the trend, but don’t have enough data to classify them as outliers 
+KAT: I made the summary above but will not have time to do more of the discussion today. I wrote a bit for the future directions. Feel free to add/change anything as you see fit.
+750-1000 words
+If you found significant differences for your taxon across depth/oxygen, why might these be occurring (hint think about the accompanying geochemical data we have)?
+What are the implications of potential differences in pipelines for microbial ecology research and discovery?
+Future directions
+From example report: Are the answers to the above the same using mothur and QIIME2 processed data? What are the implications of potential differences in pipelines for microbial ecology research and discovery? 
+For alpha diversity vs. o2 plots: The lower value of Chao1 compared to Shannon at ~217uM could indicate increased species evenness despite reduced species diversity. (because Shannon is richness+evenness and Chao1 is only richness)
+
+LAST CHECKED 9:50 pm 813 words
+Helen (Question 1):
+The phylum *Chloroflexi* contains bacteria with many different metabolic characteristics, such as aerobic thermophiles, anoxygenic phototrophs, and anaerobic halorespirers which actually use halogenated organics as electron acceptors [1]. In our analysis, we found that *Chloroflexi* abundance was correlated with depth, with the greatest abundance of *Chloroflexi* within the deepest sample. This is likely a result of the oxygen concentration decreasing with depth, and in fact we also found a negative correlation between *Chloroflexi* abundance and oxygen concentration. Interestingly, these results were determined to only be significant in the QIIME2 analysis, but not the mothur analysis. This discrepancy may mean that these results can only be interpreted as a likelihood, and not a definitive correlation. Therefore, while there is an initial indication of a preference for *Chloroflexi* bacteria to inhabit an anoxic habitat, it is important to note that the diverse classes of bacteria within the phylum likely have their own preferences for oxygen content.
+
+If we look at the biodiversity in the Saanich Inlet, especially the deeper waters, researchers have observed bacteria that feed off of the dying plankton sinking from the warm surface waters and all available oxygen [2]. This creates the layer of oxygen poor water [2]. Since *Chloroflexi* encompasses such vastly different classes of bacteria with disparate metabolistic behavior, many of the bacteria found at a greater depth, feeding off plankton, could be from our studied phylum. The abundance of plankton or dinoflagellates at the surface of the inlet may contribute to the reason why there is not more growth of *Chloroflexi* bacteria [2]. However, the more opportune environment for *Chloroflexi*, or at least the anoxygenic subset, is at a deeper depth where it becomes easier to sustain themselves without competition from other phylums. 
+
+When we look at correlation between OTUs and ASVs against depth or oxygen, we are often met with insignificance in the data. Looking back at Figure 7, we can see similar trends between the different OTU or ASV graphs, however the glaring single outlier defies any correlation between the data points. These outliers happen with consistency, but there is no real explanation for why it occurs. These outliers do not occur at the same depths or oxygen levels for the various ASVs and OTUs studied, which may mean that there is no pattern or rationale for its occurrence. More data would allow to confirm these outliers, exclude them from the results and potentially identify significant correlations.
+
+[1]https://www.revolvy.com/main/index.php?s=Chloroflexi%20(phylum)
+[2] http://www.oceannetworks.ca/introduction-saanich-inlet
+
+Potential differences in pipelines for microbial ecology research and discovery will result in potential differences in analytical outcomes, and can lead to misidentifying the presence of species in different habitats or the trends. As we observed in this study, although mothur and QIIME2 often produced similar patterns, they did not agree on details. While QIIME2 led us to conclude that there was a presence of four classes (plus one uncultured class) of *Chloroflexi* in our samples, mothur only identified two.These differences are concerning, since depending on the pipeline we use, we might miss organisms we have collected, or we might falsely identify the presence of organisms that are in reality not there. Consequently, we can be drawing the wrong conclusions about ecosystems, and the interplay of its inhabitants. Furthermore, whether we find significant correlations can also depend on the pipeline used. While *Chloroflexi* abundance was found to significantly correlate with depth and oxygen concentration for QIIME2, the correlation was not significant for mothur. This emphasizes the concern that different pipelines can lead to concluding trends are significant while they might not be, or vice versa.
+
+Differences we observed between the usage of mothur versus QIIME2 to analyse the reads in this study can also be seen in other research. For instance, a study examining the composition of Chicken cecum microbiome performed by Allalil *et al.* revealed lower phylogenetic diversity (PD) values when UPARSE pipelines were used in comparison to de novo QIIME pipelines and open reference QIIME pipelines. However, Species Richness (S) values were comparable when comparing different pipelines. In addition, the number of assigned sequences for different sequencing platform runs were impacted because of OTU picking using different pipelines: De novo vs open reference QIIME pipelines. Furthermore, the QIIME pipelines generated different relative abundance of specific genera in comparison to UPARSE. Moreover, differences in the detection profiles, such as the number of unique species, were observed when using different pipelines. The number of OTUs and taxonomic assignments produced and identified differed between pipelines with a 99% similarity threshold.  
+
+More data was obtained than was analyzed in the current report. In the future, one could look for correlations of abundance across the other factors, such as temperature or salinity, not just depth and oxygen concentration. Furthermore, there is a gap in the data between the depth of 10m and depth of 100m, which makes it difficult to determine correlations. More consistent data collection with more samples could help alleviate such problems, and potentially show significant correlations. Sample collections over time could be interesting in exploring how the diversity in the area changes over seasons, or over longer time periods, such as decades. It could also be of interest, for any unknown, or not very well known, organisms to look into more details of their genetic make up in order to determine what roles, if any, they might play in biogeochemical cycles.
+
+John: The observation that *Chloroflexi* abundance was significantly correlated with depth and oxygen concentration only in mothur and not QIIME (and p values are different by an order(s) of magnitude) emphasizes the concern of difference in research outcome using different pipelines, potentially attributable to their clustering methods.
+
+	John: could also look at if positive or negative correlations in abundance vs depth plots are associated with distinct sub-phylum level classifications (i.e. maybe one class is more abundant at the top and another is more abundant at the bottom)
+
+
+# References
+
+
+[1] Zaikova E., Walsh DA, Stilwell CP, Mohn WW, Tortell PD, Hallam SJ. 2010. Microbial community dynamics in a seasonally anoxic fjord: Saanich Inlet, British Columbia. Environmental Microbiology 12:172-191. 
+
+[2] Herlinveaux RH. 2011. Journal of the Fisheries Research Board of Canada 19:1-37.
+
+[3] 2012. Saanich Inlet. MicrobeWiki.  
+
+[4] Blaxter M, Mann J, Chapman T, Thomas F, Whitton C, Floyd R, Abebe E. 2005. Defining operational taxonomic units using DNA barcode data. Philosophical Transactions of the Royal Society B: Biological Sciences 360:1935–1943.
+
+[5] Callahan BJ, Mcmurdie PJ, Holmes SP. 2017. Exact sequence variants should replace operational taxonomic units in marker gene data analysis. Multidisciplinary Journal of Microbial Ecology 11:2639–2643.
+
+[6] Schmidt TSB, Rodrigues JFM, Christian M. 2014. Ecological Consistency of SSU rRNA-Based Operational Taxonomic Units at a Global Scale. PLoS Comput Biol. 10. http://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1003594
+
+[7] Wang, Y., Sheng, H., He, Y., Wu, J., Jiang, Y., Tam, N. F., & Zhou, H. (2012). Comparison of the levels of bacterial diversity in freshwater, intertidal wetland, and marine sediments by using millions of illumina tags. Applied and Environmental Microbiology, 78(23), 8264-8271. 10.1128/AEM.01821-12 
+
+[8] Thiel V, Hamilton TL, Tomsho LP, Burhans R, Gay SE, Schuster SC, et al. Draft genome sequence of a sulfide-oxidizing, autotrophic filamentous anoxygenic phototrophic bacterium, Chloroflexus sp. strain MS-G (Chloroflexi). Genome Announc 2014;2:9–10.
+
+[9] Sekiguchi Y, Yamada T, Hanada S, Ohashi A, Harada H, Kamagata Y. Anaerolinea thermophila gen. nov., sp. nov. and Caldilinea aerophila gen. nov., sp. nov., novel filamentous thermophiles that represent a previously uncultured lineage of the domain bacteria at the subphylum level. Int J Syst Evol Microbiol 2003;53:1843–51.
+
+[10] Kiss H, Nett M, Domin N, Martin K, Maresca JA, Copeland A, Lapidus A, Lucas S, Berry KW, Rio TGD, Dalin E, Tice H, Pitluck S, Richardson P, Bruce D, Goodwin L, Han C, Detter JC, Schmutz J, Brettin T, Land M, Hauser L, Kyrpides NC, Ivanova N, Göker M, Woyke T, Klenk H-P, Bryant DA. 2011. Complete genome sequence of the filamentous gliding predatory bacterium Herpetosiphon aurantiacus type strain (114-95T). Standards in Genomic Sciences 5:356–370.
+
+[11] Wasmund, K., Cooper, M., Schreiber, L., Lloyd, K. G., Baker, B. J., Petersen, D. G., . . . Adrian, L. (2016). Single-cell genome and group-specific dsrAB sequencing implicate marine members of the class dehalococcoidia (phylum chloroflexi) in sulfur cycling. Mbio, 7(3), e00266. 10.1128/mBio.00266-16
+
+[12] Biderre-Petit C, Dugat-Bony E, Mege M, Parisot N, Adrian L, Moné A, Denonfoux J, Peyretaillade E, Debroas D, Boucher D, Peyret P. 2016. Distribution of Dehalococcoidia in the Anaerobic Deep Water of a Remote Meromictic Crater Lake and Detection of Dehalococcoidia-Derived Reductive Dehalogenase Homologous Genes. Plos One 11.
+
+[13] Hugenholtz, P., Goebel, B. M., & Pace, N. R. (1998). Impact of culture-independent studies on the emerging phylogenetic view of bacterial diversity. Journal of Bacteriology, 180(18), 4765-4774.
+
+[14] Xia Y, Wang Y, Wang Y, Chin FYL, Zhang T. 2016. Cellular adhesiveness and cellulolytic capacity in Anaerolineae revealed by omics-based genome interpretation. Biotechnology for Biofuels 9.
+
+[15] Giovannoni SJ, Rappe MS, Vergin KL, Adair NL. 1996. 16S rRNA genes reveal stratified open ocean bacterioplankton populations related to the Green Non-Sulfur bacteria. Proceedings of the National Academy of Sciences 93:7979–7984.
+
+[16] Morris RM, Rappé MS, Urbach E, Connon SA, Rappe MS, Giovannoni SJ. Prevalence of the Chloroflexi-related SAR202 bacterioplankton cluster throughout the mesopelagic zone and deep ocean. Appl Environ Microbiol 2004;70:2836–42.
+
+[17] Mehrshad M, Rodriguez-Valera F, Amoozegar MA, López-García P, Ghai R. 2017. The enigmatic SAR202 cluster up close: shedding light on a globally distributed dark ocean lineage involved in sulfur cycling. The ISME Journal 12:655–668.
+
+[18] Wegner C-E, Liesack W. 2017. Unexpected Dominance of Elusive Acidobacteria in Early Industrial Soft Coal Slags. Frontiers in Microbiology 8.
+
+[19] Ye Q, Wu Y, Zhu Z, Wang X, Li Z, Zhang J. 2016. Bacterial diversity in the surface sediments of the hypoxic zone near the Changjiang Estuary and in the East China Sea. MicrobiologyOpen 5:323–339.
+
+[20] Torres-Beltrán M, Hawley AK, Capelle D, Zaikova E, Walsh DA, Mueller A, Scofield M, Payne C, Pakhomova L, Kheirandish S, Finke J, Bhatia M, Shevchuk O, Gies EA, Fairley D, Michiels C, Suttle CA, Whitney F, Crowe SA, Tortell PD, Hallam SJ. 2017. A compendium of geochemical information from the Saanich Inlet water column. Sci Data 4:170159.
+
+
+[21] Hawley AK, Torres-Beltrán M, Zaikova E, Walsh DA, Mueller A, Scofield M, Kheirandish S, Payne C, Pakhomova L, Bhatia M, Shevchuk O, Gies EA, Fairley D, Malfatti SA, Norbeck AD, Brewer HM, Pasa-Tolic L, del Rio TG, Suttle CA, Tringe S, Hallam SJ. 2017. A compendium of multi-omic sequence information from the Saanich Inlet water column. Sci Data 4:170160.
 
 # Appendices
 
