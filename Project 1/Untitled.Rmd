@@ -1,0 +1,12 @@
+---
+title: "Project 1 report"
+author: "The awesome group 6"
+date: "version `r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_float:
+      collapsed: no
+---
+
