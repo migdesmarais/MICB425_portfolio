@@ -1,5 +1,0 @@
-"0","q.meta.alpha %>% "
-"0","  ggplot() +"
-"0","    geom_point(aes(x=Depth_m, y=Chao1)) +"
-"0","    geom_smooth(method='auto', aes(x=as.numeric(Depth_m), y=Chao1)) +"
-"0","    labs(title=""Chao1 across depth for qiime2"", y=""Chao1 richness estimator"", x=""Depth (m)"")"

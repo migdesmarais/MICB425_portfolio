@@ -1,0 +1,76 @@
+---
+title: "Project 1 self-assessment of contributions"
+subtitle: "2018 Term 2 - MICB425"
+author: "Miguel Desmarais (21421145)"
+date: "version `r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+---
+
+### Abstract
+#### Writing
+
+* Added a few sentences to the abstract regarding results for the correlation of selected genus abundance, oxygen levels and hydrogen sulfide concentrations.
+
+* Included a few key statements to highlight the aim of this study.
+
+#### Editing
+
+* Proofread (corrected grammar errors) and made abstract more concise.
+
+### Introduction
+#### Literature research
+
+* Researched the role of selected genus in sulfur cycling.
+
+#### Writing
+
+* Introduced selected genus in relation to sulfur cycling.
+
+#### Editing
+
+* Proofread (corrected grammar errors and run-on sentences), clarified terms used and introduced a few basic ideas for this paper such as upwelling, nutrients, primary production and oxygen minimum zones.
+
+### Methods
+#### Writing
+
+Not in charge.
+
+#### Editing
+
+Not in charge.
+
+### Results
+#### Analysis 
+
+* Analyzed correlations to highlight significant trends. Related selected species to significant trends with O2, depth and H2S levels.
+
+#### Figures
+
+* Generated ~half of the figures with another team member.
+* Generated the correlation tables and linear model figures.
+
+#### Writing
+
+* Wrote ~half of the results.
+
+#### Editing
+
+* Made sure figures were consistent across the study and improve the quality for readers to easily understand trends and major correlations.
+
+### Discussion
+#### Literature research
+
+* Researched the role of selected genus in sulfur cycling and its relation the depth and O2 concentrations.
+
+#### Writing
+
+* Wrote 1 paragraph about hydrogen sulfide and selected genus, and also related specific species to sulfur cycle.
+* Wrote 1 paragraph about oxygen levels and selected genus.
+* Wrote 1 paragraph about depth and selected genus.
+
+#### Editing
+
+* Proofread and confirmed references of other parts of the discussion.
+* Commented on most of my teammates input to improve the clarity and precision of our discussion.
+
+

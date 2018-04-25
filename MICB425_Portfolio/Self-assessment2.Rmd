@@ -1,0 +1,70 @@
+---
+title: "Project 2 self-assessment of contributions"
+subtitle: "2018 Term 2 - MICB425"
+author: "Miguel Desmarais (21421145)"
+date: "version `r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+---
+
+### Abstract
+#### Writing
+
+Not in charge.
+
+#### Editing
+
+* Proofread (corrected grammar errors) and made abstract more concise.
+
+### Introduction
+#### Literature research
+
+* Researched the role and distribution of norC in marine environments and added some references.
+
+#### Writing
+
+* Added text to clarify paragraph on oxygen minimum zone.
+
+#### Editing
+
+* Proofread (corrected grammar errors and run-on sentences), clarified terms used and introduced a few basic ideas for this paper such as global OMZs and causes of such environments.
+
+### Methods
+#### Writing
+
+* Wrote all of the methods.
+
+#### Editing
+
+* Edited all of the methods in response to comments from my group.
+
+### Results
+#### Analysis 
+
+Not in charge.
+
+#### Figures
+
+Not in charge.
+
+#### Writing
+
+Not in charge.
+
+#### Editing
+
+* Proposed modifications that could be brought to results and edited some of the figures.
+
+### Discussion
+#### Literature research
+
+* Researched the literature about the role or norC and the distribution of nitrogen species within the water column.
+
+#### Writing
+
+* Wrote 2 paragraphs about the distribution of nitrogen species within the OMZ of Saanich Inlet and related these levels to the presence of norC in the water column. Added to future direction.
+
+#### Editing
+
+* Proofread and confirmed references of other parts of the discussion.
+* Commented on most of my teammates input to improve the clarity and precision of our discussion.
+

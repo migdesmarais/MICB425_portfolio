@@ -72,7 +72,7 @@ The collector's curve for my sample does not flatten out.
 
 * **What can you conclude from the shape of your collector's curve as to your depth of sampling?**
 
-I can conclude from the shape of my collector's curve that the depth of my sampling is not the greatest. Since the curve does not flatten out, more species would most likely be found if more sampling was done. The collector's curve and this conclusion agree with the difference in the number of species found in my sample and in the full community (32 and 51, resepctively).
+I can conclude from the shape of my collector's curve that the depth of my sampling is not the greatest. Since the curve does not flatten out, more species would most likely be found if more sampling was done. The collector's curve and this conclusion agree with the difference in the number of species found in my sample and in the full community (32 and 51, respectively).
 
 #### Part 3: Diversity estimates (alpha diversity)
 
@@ -82,7 +82,7 @@ $\frac{1}{D}$ where $D = \sum p_i^2$
 
 $p_i$ = the fractional abundance of the $i^{th}$ species
 
-The higher the value is, the greater the diversity. The maximum value is the number of species in the sample, which occurs when all species contain an equal number of individuals. Because the index reflects the number of species present (richness) and the relative proportions of each species with a community (evenness), this metric is a diveristy metric. Consider that a community can have the same number of species (equal richness) but manifest a skewed distribution in the proportion of each species (unequal evenness), which would result in different diveristy values.
+The higher the value is, the greater the diversity. The maximum value is the number of species in the sample, which occurs when all species contain an equal number of individuals. Because the index reflects the number of species present (richness) and the relative proportions of each species within a community (evenness), this is a diversity metric. Consider that a community can have the same number of species (equal richness) but manifest a skewed distribution in the proportion of each species (unequal evenness), which would result in different diversity values.
 
 * **What is the Simpson Reciprocal Index for your sample?**
 
@@ -211,7 +211,7 @@ If you are stuck on some of these final questions, reading the [Kunin et al. 201
 
 The measure of diversity, alpha diversity in this case, directly depends on the definition of species in my sample and community. Since both the Simpson Reciprocal Indices value and the Chao1 value are essentially based, in different ways, on the total number of species observed, changing the definition of species will have an effect on the number of species observed and alpha diversity. 
 
-For example, many studies use the 97% identity threshold value to definie species. Raising this value to 99% would result in more species observed in a sample (overestimating diversity) while lowering this threshold to 95%, for example, would results in more "identical" sequences and therefore less species obserbed in a sample (underestimating diversity).
+For example, many studies use the 97% identity threshold value to definite species. Raising this value to 99% would result in more species observed in a sample (overestimating diversity) while lowering this threshold to 95%, for example, would results in more "identical" sequences and therefore less species observed in a sample (underestimating diversity).
 
 * **Can you think of alternative ways to cluster or bin your data that might change the observed number of species?**
 
@@ -219,4 +219,4 @@ Binning or clustering data based on the GC content, codon usage or percent ident
 
 * **How might different sequencing technologies influence observed diversity in a sample?**
 
-Inflated diversity have been previously associated with pyrosequencing errors. Sanger, a sequencing technology with a relatively low error rate, has shown a constant overestimation of diversity.Therefore, sequencing technologies with a higher base calling/sequencing error rate such as PacBio or Oxford Nanopore will most likely result in much more species observed in a sample. This is due to the potential introduction of wrong bases in a certain DNA sequence. This may in turn lead to the sequence falling bellow he 97% identity threshold and therefore being categorized as a different and new species observed in the sample.  
+Inflated diversity have been previously associated with pyrosequencing errors. Sanger, a sequencing technology with a relatively low error rate, has shown a constant overestimation of diversity. Therefore, sequencing technologies with a higher base calling/sequencing error rate such as PacBio or Oxford Nanopore will most likely result in much more species observed in a sample. This is due to the potential introduction of wrong bases in a certain DNA sequence. This may in turn lead to the sequence falling bellow he 97% identity threshold and therefore being categorized as a different and new species observed in the sample. 

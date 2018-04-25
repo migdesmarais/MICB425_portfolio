@@ -120,7 +120,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Problem Set_04</h1>
 <h4 class="author"><em>Miguel Desmarais (21421145)</em></h4>
-<h4 class="date"><em>version March 05, 2018</em></h4>
+<h4 class="date"><em>version April 25, 2018</em></h4>
 
 </div>
 
@@ -1389,7 +1389,7 @@ ggplot(collector, aes(x=x, y=y)) +
 <ul>
 <li><strong>What can you conclude from the shape of your collector’s curve as to your depth of sampling?</strong></li>
 </ul>
-<p>I can conclude from the shape of my collector’s curve that the depth of my sampling is not the greatest. Since the curve does not flatten out, more species would most likely be found if more sampling was done. The collector’s curve and this conclusion agree with the difference in the number of species found in my sample and in the full community (32 and 51, resepctively).</p>
+<p>I can conclude from the shape of my collector’s curve that the depth of my sampling is not the greatest. Since the curve does not flatten out, more species would most likely be found if more sampling was done. The collector’s curve and this conclusion agree with the difference in the number of species found in my sample and in the full community (32 and 51, respectively).</p>
 </div>
 <div id="part-3-diversity-estimates-alpha-diversity" class="section level4">
 <h4>Part 3: Diversity estimates (alpha diversity)</h4>
@@ -1397,7 +1397,7 @@ ggplot(collector, aes(x=x, y=y)) +
 <h5>Diversity: Simpson Reciprocal Index</h5>
 <p><span class="math inline">\(\frac{1}{D}\)</span> where <span class="math inline">\(D = \sum p_i^2\)</span></p>
 <p><span class="math inline">\(p_i\)</span> = the fractional abundance of the <span class="math inline">\(i^{th}\)</span> species</p>
-<p>The higher the value is, the greater the diversity. The maximum value is the number of species in the sample, which occurs when all species contain an equal number of individuals. Because the index reflects the number of species present (richness) and the relative proportions of each species with a community (evenness), this metric is a diveristy metric. Consider that a community can have the same number of species (equal richness) but manifest a skewed distribution in the proportion of each species (unequal evenness), which would result in different diveristy values.</p>
+<p>The higher the value is, the greater the diversity. The maximum value is the number of species in the sample, which occurs when all species contain an equal number of individuals. Because the index reflects the number of species present (richness) and the relative proportions of each species within a community (evenness), this is a diversity metric. Consider that a community can have the same number of species (equal richness) but manifest a skewed distribution in the proportion of each species (unequal evenness), which would result in different diversity values.</p>
 <ul>
 <li><strong>What is the Simpson Reciprocal Index for your sample?</strong></li>
 </ul>
@@ -1541,7 +1541,7 @@ mycommunity_diversity</code></pre>
 <li><strong>How does the measure of diversity depend on the definition of species in your samples?</strong></li>
 </ul>
 <p>The measure of diversity, alpha diversity in this case, directly depends on the definition of species in my sample and community. Since both the Simpson Reciprocal Indices value and the Chao1 value are essentially based, in different ways, on the total number of species observed, changing the definition of species will have an effect on the number of species observed and alpha diversity.</p>
-<p>For example, many studies use the 97% identity threshold value to definie species. Raising this value to 99% would result in more species observed in a sample (overestimating diversity) while lowering this threshold to 95%, for example, would results in more “identical” sequences and therefore less species obserbed in a sample (underestimating diversity).</p>
+<p>For example, many studies use the 97% identity threshold value to definite species. Raising this value to 99% would result in more species observed in a sample (overestimating diversity) while lowering this threshold to 95%, for example, would results in more “identical” sequences and therefore less species observed in a sample (underestimating diversity).</p>
 <ul>
 <li><strong>Can you think of alternative ways to cluster or bin your data that might change the observed number of species?</strong></li>
 </ul>
@@ -1549,7 +1549,7 @@ mycommunity_diversity</code></pre>
 <ul>
 <li><strong>How might different sequencing technologies influence observed diversity in a sample?</strong></li>
 </ul>
-<p>Inflated diversity have been previously associated with pyrosequencing errors. Sanger, a sequencing technology with a relatively low error rate, has shown a constant overestimation of diversity.Therefore, sequencing technologies with a higher base calling/sequencing error rate such as PacBio or Oxford Nanopore will most likely result in much more species observed in a sample. This is due to the potential introduction of wrong bases in a certain DNA sequence. This may in turn lead to the sequence falling bellow he 97% identity threshold and therefore being categorized as a different and new species observed in the sample.</p>
+<p>Inflated diversity have been previously associated with pyrosequencing errors. Sanger, a sequencing technology with a relatively low error rate, has shown a constant overestimation of diversity. Therefore, sequencing technologies with a higher base calling/sequencing error rate such as PacBio or Oxford Nanopore will most likely result in much more species observed in a sample. This is due to the potential introduction of wrong bases in a certain DNA sequence. This may in turn lead to the sequence falling bellow he 97% identity threshold and therefore being categorized as a different and new species observed in the sample.</p>
 </div>
 </div>
 

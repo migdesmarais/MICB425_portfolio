@@ -1,5 +1,0 @@
-"0","# Taxa abundance"
-"0","m.percent %>%"
-"0","  plot_bar(fill=""Phylum"")+"
-"0","  geom_bar(aes(fill=Phylum), stat=""identity"")+"
-"0","  labs(title=""Phyla across samples for mothur"")"
